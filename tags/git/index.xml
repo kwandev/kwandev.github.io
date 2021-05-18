@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Git on KwanDev</title><link>https://kwandev.github.io/tags/git/</link><description>Recent content in Git on KwanDev</description><generator>Hugo -- gohugo.io</generator><language>ko</language><lastBuildDate>Sat, 26 Oct 2019 18:23:59 +0000</lastBuildDate><atom:link href="https://kwandev.github.io/tags/git/index.xml" rel="self" type="application/rss+xml"/><item><title>12가지 명령어로 배우는 Git 리뷰</title><link>https://kwandev.github.io/post/git/2019-10-26-review-git-zerocho/</link><pubDate>Sat, 26 Oct 2019 18:23:59 +0000</pubDate><guid>https://kwandev.github.io/post/git/2019-10-26-review-git-zerocho/</guid><description>zerocho님의 유튜브 무료강의인 을 보고난 후기 링크) 12가지 명령어로 배우는 Git
+일단 동영상의 평균적인 길이가 10분~20분 사이여서, 출퇴근 시간에 가볍게 한 두편씩 보기 좋았다.
+기본적인 git의 기능은 알고 있고, 실무에서 사용한 경험이 있었기 때문에 이해하기에 크게 무리가 없었으며, 초보자나 기본적인 기능만 아는 분들이 보면 굉장히 유익할 것 같다.
+영상 제목 또한 기능별로 순서대로 잘 나뉘어 있어서 나중에 다시 필요한 부분만 보기에도 용이하다.
+총 12가지의 git의 기본적인 기능을 설명한다.
+status add commit remote push pull reset revert branch merge rebase cherry-pick 위의 명령어 외에도 tag, stash, checkout, fetch 등에 대해서도 간략하게 설명한다.</description></item></channel></rss>

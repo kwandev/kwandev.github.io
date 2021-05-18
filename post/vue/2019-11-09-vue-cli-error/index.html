@@ -1,0 +1,18 @@
+<!doctype html><html lang=ko><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=theme-color content="dark"><title>vue-cli 사용시 PowerShell 에러 | KwanDev</title><link rel=stylesheet href=/sass/main.min.85012d0996f0380c1d60b7c11fa7cb08a3783fc0e0b2a87d95171cec3f4fa20a.css></head><body class=dark><nav class=navbar><div class=container><div class=flex><div><a class=brand href=/><span class=emoji>😎</span>
+KwanDev</a></div><div class=flex><a href=/articles/>Articles</a>
+<button id=dark-mode-button></button></div></div></div></nav><main><div class=container><article><header class=article-header><div class=thumb><div><h1>vue-cli 사용시 PowerShell 에러</h1><div class=post-meta><div><time>November 09, 2019</time></div><div class=tags><a href=/tags/vue/>Vue</a>
+<a href=/tags/powershell/>PowerShell</a></div></div></div></div></header></article><div class=article-post><p>최근 vue cli를 이용하는데 있어, 제대로 실행이 되지 않는 문제가 있어서 원인을 제대로 파악하지 못하고 있었는데, powershell에서 스크립트 실행하는 권한에 대한 정책 때문인 것을 알게 되었다.</p><p><img src=https://user-images.githubusercontent.com/54297322/68524255-f6e3cc80-0307-11ea-82ea-cf21654d8379.png alt=vue스크립트에러></p><p>위와 같이 에러가 날텐데, 간단하게 해결하는 방법은</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>// error
+vue create &lt;project-name&gt;
+
+// success
+vue.cmd create &lt;project-name&gt;
+</code></pre></td></tr></table></div></div><p>위처럼 <code>.cmd</code>를 붙여 사용하면 된다고 한다.</p><p>혹은 아예 그냥 git bash나 다른 터미널을 이용하면 된다.</p><ul><li>참고 사이트
+<a href="https://docs.microsoft.com/ko-kr/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-6">MS powershell docs</a></li></ul></div></div><div class=container><nav class="flex container suggested"><a rel=prev href=/post/git/2019-10-26-review-git-zerocho/ title="Previous post (older)"><span>Previous</span>
+12가지 명령어로 배우는 Git 리뷰</a>
+<a rel=next href=/post/codingtest/2019-12-10-programmers-kakao2018-1/ title="Next post (newer)"><span>Next</span>
+[1차] 비밀지도 - 프로그래머스 코딩테스트 연습</a></nav></div></main></main><footer class="footer flex"><section class=container><nav class=footer-links><a href=/index.xml>RSS</a></nav></section><script async src=/js/features.min.c5d8f3350f5a652f526b982306299353824299adb7a3bd261ecffacc47087f66.js></script></footer></body></html>

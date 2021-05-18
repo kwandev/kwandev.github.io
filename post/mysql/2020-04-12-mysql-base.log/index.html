@@ -1,0 +1,101 @@
+<!doctype html><html lang=ko><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=theme-color content="dark"><title>MySQL 기초 문법 정리 | KwanDev</title><link rel=stylesheet href=/sass/main.min.85012d0996f0380c1d60b7c11fa7cb08a3783fc0e0b2a87d95171cec3f4fa20a.css></head><body class=dark><nav class=navbar><div class=container><div class=flex><div><a class=brand href=/><span class=emoji>😎</span>
+KwanDev</a></div><div class=flex><a href=/articles/>Articles</a>
+<button id=dark-mode-button></button></div></div></div></nav><main><div class=container><article><header class=article-header><div class=thumb><div><h1>MySQL 기초 문법 정리</h1><div class=post-meta><div><time>April 12, 2020</time></div><div class=tags><a href=/tags/mysql/>MySQL</a>
+<a href=/tags/db/>DB</a></div></div></div></div></header></article><div class=article-post><p>프론트엔드 개발을 하게되면서 백엔드는 거의 손놓고 있다가 최근 다시 백엔드를 하기 시작했다. 간단한 문법이나 개념이 혼동되기 시작해서 DB를 만들고 사용하는 정말 기본적인 문법만 정리를 해봤다.</p><blockquote><p>해당 글은 생활코딩의 강의를 보며 정리했습니다.</p></blockquote><blockquote><p><a href=https://opentutorials.org/course/3161>https://opentutorials.org/course/3161</a></p></blockquote><p><strong>SQL 문법은 대소문자 구분을 하지 않는다.</strong></p><h2 id=구조>구조</h2><ul><li>데이터베이스 서버 > DB (스키마) > 표 (Table)</li></ul><h2 id=서버-접속>서버 접속</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>mysql -uroot -p
+</code></pre></td></tr></table></div></div><ul><li>-u: 계정<ul><li>-uroot 는 root 계정을 사용한다는 뜻</li><li>-ukwan 이라면 kwan 계정을 사용</li></ul></li><li>-p: 비밀번호<ul><li>-pabcd 이런식으로 붙여 쓸 수도 있지만 노출되기 때문에 -p만 적으면 뒤에 응답을 통해 입력 가능</li></ul></li><li>-h: 호스트<ul><li>-h127.0.0.1 과 같이 쓸 수 있음. 로컬은 안써도 되고 원격지는 해당 주소를 입력해주면 됨</li></ul></li></ul><h2 id=스키마-사용>스키마 사용</h2><h3 id=데이터베이스스키마-생성>데이터베이스(스키마) 생성</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sql data-lang=sql><span class=k>create</span><span class=w> </span><span class=k>database</span><span class=w> </span><span class=o>&lt;</span><span class=err>데이터베이스</span><span class=w> </span><span class=err>명</span><span class=o>&gt;</span><span class=w>
+</span></code></pre></td></tr></table></div></div><h3 id=스키마-삭제>스키마 삭제</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sql data-lang=sql><span class=k>drop</span><span class=w> </span><span class=k>database</span><span class=w> </span><span class=o>&lt;</span><span class=err>데이터베이스</span><span class=w> </span><span class=err>명</span><span class=o>&gt;</span><span class=w>
+</span></code></pre></td></tr></table></div></div><h3 id=스키마-확인>스키마 확인</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sql data-lang=sql><span class=k>show</span><span class=w> </span><span class=n>databases</span><span class=p>;</span><span class=w>
+</span><span class=w>
+</span><span class=w></span><span class=k>show</span><span class=w> </span><span class=n>schemas</span><span class=p>;</span><span class=w>
+</span></code></pre></td></tr></table></div></div><h3 id=스키마-사용선택>스키마 사용(선택)</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sql data-lang=sql><span class=n>use</span><span class=w> </span><span class=o>&lt;</span><span class=err>데이터베이스</span><span class=w> </span><span class=err>명</span><span class=o>&gt;</span><span class=w>
+</span></code></pre></td></tr></table></div></div><h2 id=테이블>테이블</h2><h3 id=테이블-구조>테이블 구조</h3><p>열 = column</p><p>행 = row = record</p><h3 id=테이블-확인>테이블 확인</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sql data-lang=sql><span class=k>show</span><span class=w> </span><span class=n>tables</span><span class=p>;</span><span class=w>
+</span></code></pre></td></tr></table></div></div><h3 id=테이블-생성>테이블 생성</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sql data-lang=sql><span class=k>CREATE</span><span class=w> </span><span class=k>TABLE</span><span class=w> </span><span class=n>topic</span><span class=w> </span><span class=p>(</span><span class=w>
+</span><span class=w>  </span><span class=n>id</span><span class=w> </span><span class=nb>INT</span><span class=p>(</span><span class=mi>11</span><span class=p>)</span><span class=w> </span><span class=k>NOT</span><span class=w> </span><span class=k>NULL</span><span class=w> </span><span class=n>AUTO_INCREMENT</span><span class=p>,</span><span class=w>
+</span><span class=w>  </span><span class=n>title</span><span class=w> </span><span class=nb>VARCHAR</span><span class=p>(</span><span class=mi>100</span><span class=p>)</span><span class=w> </span><span class=k>NOT</span><span class=w> </span><span class=k>NULL</span><span class=p>,</span><span class=w>
+</span><span class=w>  </span><span class=n>description</span><span class=w> </span><span class=nb>TEXT</span><span class=w> </span><span class=k>NULL</span><span class=p>,</span><span class=w>
+</span><span class=w>  </span><span class=n>created</span><span class=w> </span><span class=n>DATETIME</span><span class=w> </span><span class=k>NOT</span><span class=w> </span><span class=k>NULL</span><span class=p>,</span><span class=w>
+</span><span class=w>  </span><span class=n>author</span><span class=w> </span><span class=nb>VARCHAR</span><span class=p>(</span><span class=mi>15</span><span class=p>)</span><span class=w> </span><span class=k>NULL</span><span class=p>,</span><span class=w>
+</span><span class=w>  </span><span class=n>profile</span><span class=w> </span><span class=nb>VARCHAR</span><span class=p>(</span><span class=mi>200</span><span class=p>)</span><span class=w> </span><span class=k>NULL</span><span class=p>,</span><span class=w>
+</span><span class=w>  </span><span class=k>PRIMARY</span><span class=w> </span><span class=k>KEY</span><span class=w> </span><span class=p>(</span><span class=n>id</span><span class=p>)</span><span class=w>
+</span><span class=w></span><span class=p>);</span><span class=w>
+</span></code></pre></td></tr></table></div></div><h3 id=테이블-삭제>테이블 삭제</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sql data-lang=sql><span class=k>DROP</span><span class=w> </span><span class=k>TABLE</span><span class=w> </span><span class=o>&lt;</span><span class=err>테이블</span><span class=w> </span><span class=err>명</span><span class=o>&gt;</span><span class=w>
+</span></code></pre></td></tr></table></div></div><h3 id=테이블-구조-확인>테이블 구조 확인</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sql data-lang=sql><span class=k>desc</span><span class=w> </span><span class=n>topic</span><span class=p>;</span><span class=w>
+</span></code></pre></td></tr></table></div></div><h2 id=crud>CRUD</h2><h3 id=insert>INSERT</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sql data-lang=sql><span class=k>INSERT</span><span class=w> </span><span class=k>INTO</span><span class=w> </span><span class=n>topic</span><span class=w> </span><span class=p>(</span><span class=w>
+</span><span class=w>  </span><span class=n>title</span><span class=p>,</span><span class=w>
+</span><span class=w>  </span><span class=n>description</span><span class=p>,</span><span class=w>
+</span><span class=w>  </span><span class=n>created</span><span class=p>,</span><span class=w>
+</span><span class=w>  </span><span class=n>author</span><span class=p>,</span><span class=w>
+</span><span class=w>  </span><span class=n>profile</span><span class=w>
+</span><span class=w></span><span class=p>)</span><span class=w> </span><span class=k>VALUES</span><span class=w> </span><span class=p>(</span><span class=w>
+</span><span class=w>  </span><span class=s1>&#39;MySQL&#39;</span><span class=p>,</span><span class=w>
+</span><span class=w>  </span><span class=s1>&#39;MySQL is ....&#39;</span><span class=p>,</span><span class=w>
+</span><span class=w>  </span><span class=n>now</span><span class=p>(),</span><span class=w>
+</span><span class=w>  </span><span class=s1>&#39;kwan&#39;</span><span class=p>,</span><span class=w>
+</span><span class=w>  </span><span class=s1>&#39;dev&#39;</span><span class=w>
+</span><span class=w></span><span class=p>);</span><span class=w>
+</span></code></pre></td></tr></table></div></div><h3 id=select>SELECT</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sql data-lang=sql><span class=k>SELECT</span><span class=w> </span><span class=o>*</span><span class=w> </span><span class=k>FROM</span><span class=w> </span><span class=n>topic</span><span class=p>;</span><span class=w>
+</span><span class=w>
+</span><span class=w></span><span class=k>SELECT</span><span class=w> </span><span class=n>id</span><span class=p>,</span><span class=w> </span><span class=n>title</span><span class=p>,</span><span class=w> </span><span class=n>author</span><span class=w> </span><span class=k>FROM</span><span class=w> </span><span class=n>topic</span><span class=p>;</span><span class=w>
+</span><span class=w>
+</span><span class=w></span><span class=k>SELECT</span><span class=w> </span><span class=n>id</span><span class=p>,</span><span class=w> </span><span class=n>title</span><span class=p>,</span><span class=w> </span><span class=n>author</span><span class=w> </span><span class=k>FROM</span><span class=w> </span><span class=n>topic</span><span class=w> </span><span class=k>WHERE</span><span class=w> </span><span class=n>author</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s1>&#39;kwan&#39;</span><span class=p>;</span><span class=w>
+</span><span class=w>
+</span><span class=w></span><span class=k>SELECT</span><span class=w> </span><span class=n>id</span><span class=p>,</span><span class=w> </span><span class=n>title</span><span class=p>,</span><span class=w> </span><span class=n>author</span><span class=w> </span><span class=k>FROM</span><span class=w> </span><span class=n>topic</span><span class=w> </span><span class=k>WHERE</span><span class=w> </span><span class=n>author</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s1>&#39;kwan&#39;</span><span class=w> </span><span class=k>ORDER</span><span class=w> </span><span class=k>BY</span><span class=w> </span><span class=n>id</span><span class=w> </span><span class=k>DESC</span><span class=p>;</span><span class=w>
+</span><span class=w>
+</span><span class=w></span><span class=k>SELECT</span><span class=w> </span><span class=n>id</span><span class=p>,</span><span class=w> </span><span class=n>title</span><span class=p>,</span><span class=w> </span><span class=n>author</span><span class=w> </span><span class=k>FROM</span><span class=w> </span><span class=n>topic</span><span class=w> </span><span class=k>WHERE</span><span class=w> </span><span class=n>author</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s1>&#39;kwan&#39;</span><span class=w> </span><span class=k>ORDER</span><span class=w> </span><span class=k>BY</span><span class=w> </span><span class=n>id</span><span class=w> </span><span class=k>DESC</span><span class=w> </span><span class=k>LIMIT</span><span class=w> </span><span class=mi>2</span><span class=p>;</span><span class=w>
+</span></code></pre></td></tr></table></div></div><h3 id=update>UPDATE</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sql data-lang=sql><span class=k>UPDATE</span><span class=w> </span><span class=n>topic</span><span class=w> </span><span class=k>SET</span><span class=w>
+</span><span class=w>  </span><span class=n>description</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s1>&#39;PostgreSQL is ....&#39;</span><span class=p>,</span><span class=w>
+</span><span class=w>  </span><span class=n>author</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s1>&#39;강감찬&#39;</span><span class=w>
+</span><span class=w></span><span class=k>WHERE</span><span class=w>
+</span><span class=w>  </span><span class=n>id</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=mi>3</span><span class=p>;</span><span class=w>
+</span></code></pre></td></tr></table></div></div><h3 id=delete>DELETE</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sql data-lang=sql><span class=w>  </span><span class=k>DELETE</span><span class=w> </span><span class=k>FROM</span><span class=w> </span><span class=n>topic</span><span class=w> </span><span class=k>WHERE</span><span class=w> </span><span class=n>id</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=mi>5</span><span class=p>;</span><span class=w>
+</span></code></pre></td></tr></table></div></div><p>delete는 실제로는 잘 사용하지 않는다. 따로 아카이브, 삭제 여부 등의 컬럼을 두어 그 값을 업데이트 하는 경우로 사용하는 것이 좋다.</p></div></div><div class=container><nav class="flex container suggested"><a rel=prev href=/post/etc/2020-04-11-2020-1.log/ title="Previous post (older)"><span>Previous</span>
+2020년 1분기 회고</a>
+<a rel=next href=/post/recruit/2020-04-19-change-job-review/ title="Next post (newer)"><span>Next</span>
+프론트엔드 개발자 이직후기</a></nav></div></main></main><footer class="footer flex"><section class=container><nav class=footer-links><a href=/index.xml>RSS</a></nav></section><script async src=/js/features.min.c5d8f3350f5a652f526b982306299353824299adb7a3bd261ecffacc47087f66.js></script></footer></body></html>

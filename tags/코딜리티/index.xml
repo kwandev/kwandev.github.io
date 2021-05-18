@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>코딜리티 on KwanDev</title><link>https://kwandev.github.io/tags/%EC%BD%94%EB%94%9C%EB%A6%AC%ED%8B%B0/</link><description>Recent content in 코딜리티 on KwanDev</description><generator>Hugo -- gohugo.io</generator><language>ko</language><lastBuildDate>Sat, 01 Feb 2020 19:21:00 +0000</lastBuildDate><atom:link href="https://kwandev.github.io/tags/%EC%BD%94%EB%94%9C%EB%A6%AC%ED%8B%B0/index.xml" rel="self" type="application/rss+xml"/><item><title>CyclicRotation - 코딜리티 Lesson 2</title><link>https://kwandev.github.io/post/codingtest/2020-02-01-codility-cyclicrotation/</link><pubDate>Sat, 01 Feb 2020 19:21:00 +0000</pubDate><guid>https://kwandev.github.io/post/codingtest/2020-02-01-codility-cyclicrotation/</guid><description>문제출처 코딜리티 CyclicRotation 문제 바로가기
+문제요약 정수 N으로 이루어진 배열 A가 주어진다. 이 때 &amp;lsquo;K`만큼 회전했을 때 배열을 구하라.
+예를 들어, A = [3, 8, 9, 7, 6], K = 3일 경우, [9, 7, 6, 3, 8]을 리턴하면 된다.
+풀이 1 2 3 4 5 6 function solution(A, K) { for (let i = 0; i &amp;lt; K; i++) { A.unshift(A.pop()); } return A; } 위 처럼 풀었더니 87%가 나왔다.</description></item><item><title>Binary Gap - 코딜리티 Lesson 1</title><link>https://kwandev.github.io/post/codingtest/2020-01-29-codility-binarygap/</link><pubDate>Wed, 29 Jan 2020 18:52:33 +0000</pubDate><guid>https://kwandev.github.io/post/codingtest/2020-01-29-codility-binarygap/</guid><description>문제출처 코딜리티 바로가기
+문제요약 주어진 양수 N을 이진표현으로 봤을 때, 가장 긴 이진간격을 구하라.
+이진 간격이란, 양쪽이 1로 둘러쌓인 0의 길이를 말한다.
+예를 들어, N = 1041 이라면 10000010001 이므로 1로 감싸진 00000과 0000중 가장 긴 수는 00000이므로 5가 반환되어야 한다.
+N = 32 이라면, 100000 이므로 1로 감싸진 수가 없기 때문에 0을 반환해야한다.
+풀이 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 function solution(N) { const binary = N.</description></item></channel></rss>

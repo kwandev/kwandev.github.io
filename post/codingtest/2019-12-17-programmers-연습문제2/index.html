@@ -1,0 +1,218 @@
+<!doctype html><html lang=ko><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=theme-color content="dark"><title>Level 1 연습문제 (2) - 프로그래머스 코딩테스트 연습 | KwanDev</title><link rel=stylesheet href=/sass/main.min.85012d0996f0380c1d60b7c11fa7cb08a3783fc0e0b2a87d95171cec3f4fa20a.css></head><body class=dark><nav class=navbar><div class=container><div class=flex><div><a class=brand href=/><span class=emoji>😎</span>
+KwanDev</a></div><div class=flex><a href=/articles/>Articles</a>
+<button id=dark-mode-button></button></div></div></div></nav><main><div class=container><article><header class=article-header><div class=thumb><div><h1>Level 1 연습문제 (2) - 프로그래머스 코딩테스트 연습</h1><div class=post-meta><div><time>December 17, 2019</time></div><div class=tags><a href=/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/>알고리즘</a>
+<a href=/tags/%EC%BD%94%EB%94%A9%ED%85%8C%EC%8A%A4%ED%8A%B8/>코딩테스트</a>
+<a href=/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4/>프로그래머스</a></div></div></div></div></header></article><div class=article-post><p><em>Last Update: 2019-12-22</em></p><ol><li><a href=/blog/codingtest/2019-12-14-programmers-1>Level 1 연습문제 (1) 바로가기</a></li><li>Level 1 연습문제 (2)</li><li><a href=/blog/codingtest/2019-12-20-programmers-3>Level 1 연습문제 (3) 바로가기</a></li></ol><p>프로그래머스의 Level1 문제들중 <code>연습문제</code>라는 카테고리의 문제들은 다른 문제들에 비해 쉬운 편이니 여러 글을 나눠 쓰지 않고 이번 글에 쭉 적어 볼 생각이다. 못 푼건 물론 안적음.</p><h2 id=수박수박수박수박수박수>수박수박수박수박수박수?</h2><details><summary>문제 보기</summary><p>길이가 n이고, 수박수박수박수&mldr;.와 같은 패턴을 유지하는 문자열을 리턴하는 함수, solution을 완성하세요.<br>예를들어 n이 4이면 수박수박을 리턴하고 3이라면 수박수를 리턴하면 됩니다.</p><h3 id=제한-조건>제한 조건</h3><ul><li>n은 길이 10,000이하인 자연수입니다.</li></ul><h3 id=입출력-예>입출력 예</h3><table><thead><tr><th>n</th><th>return</th></tr></thead><tbody><tr><td>3</td><td>수박수</td></tr><tr><td>4</td><td>수박수박</td></tr></tbody></table></details><h3 id=풀이>풀이</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=kd>function</span> <span class=nx>solution</span><span class=p>(</span><span class=nx>n</span><span class=p>)</span> <span class=p>{</span>
+  <span class=kd>var</span> <span class=nx>answer</span> <span class=o>=</span> <span class=s2>&#34;수박&#34;</span><span class=p>.</span><span class=nx>repeat</span><span class=p>(</span><span class=nx>n</span><span class=p>);</span>
+  <span class=nx>answer</span> <span class=o>=</span> <span class=nx>answer</span><span class=p>.</span><span class=nx>substr</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=nx>answer</span><span class=p>.</span><span class=nx>length</span> <span class=o>/</span> <span class=mi>2</span><span class=p>);</span>
+  <span class=k>return</span> <span class=nx>answer</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><hr><h2 id=문자열을-정수로-바꾸기>문자열을 정수로 바꾸기</h2><details><summary>문제 보기</summary><p>문자열 s를 숫자로 변환한 결과를 반환하는 함수, solution을 완성하세요.</p><h3 id=제한-조건-1>제한 조건</h3><ul><li>s의 길이는 1 이상 5이하입니다.</li><li>s의 맨앞에는 부호(+, -)가 올 수 있습니다.</li><li>s는 부호와 숫자로만 이루어져있습니다.</li><li>s는 0으로 시작하지 않습니다.</li></ul><h3 id=입출력-예-1>입출력 예</h3><p>예를들어 str이 1234이면 1234를 반환하고, -1234이면 -1234를 반환하면 됩니다.
+str은 부호(+,-)와 숫자로만 구성되어 있고, 잘못된 값이 입력되는 경우는 없습니다.</p></details><h3 id=풀이-1>풀이</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=kd>function</span> <span class=nx>solution</span><span class=p>(</span><span class=nx>s</span><span class=p>)</span> <span class=p>{</span>
+  <span class=c1>// return +s;
+</span><span class=c1></span>  <span class=c1>// return s / 1;
+</span><span class=c1></span>  <span class=c1>// return s * 1;
+</span><span class=c1></span>  <span class=k>return</span> <span class=nb>parseInt</span><span class=p>(</span><span class=nx>s</span><span class=p>);</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>주석친 연산를 통해 정수형을 바꿀 수도 있겠지만, parseInt로 사용하는 것이 더 명확한 것 같아서 parseInt를 사용한다.</p><hr><h2 id=시저-암호>시저 암호</h2><details><summary>문제 보기</summary><p>어떤 문장의 각 알파벳을 일정한 거리만큼 밀어서 다른 알파벳으로 바꾸는 암호화 방식을 시저 암호라고 합니다. 예를 들어 AB는 1만큼 밀면 BC가 되고, 3만큼 밀면 DE가 됩니다. z는 1만큼 밀면 a가 됩니다. 문자열 s와 거리 n을 입력받아 s를 n만큼 민 암호문을 만드는 함수, solution을 완성해 보세요.</p><h3 id=제한-조건-2>제한 조건</h3><ul><li>공백은 아무리 밀어도 공백입니다.</li><li>s는 알파벳 소문자, 대문자, 공백으로만 이루어져 있습니다.</li><li>s의 길이는 8000이하입니다.</li><li>n은 1 이상, 25이하인 자연수입니다.</li></ul><h3 id=입출력-예-2>입출력 예</h3><table><thead><tr><th>s</th><th>n</th><th>result</th></tr></thead><tbody><tr><td>&ldquo;AB&rdquo;</td><td>1</td><td>&ldquo;BC&rdquo;</td></tr><tr><td>&ldquo;z&rdquo;</td><td>1</td><td>&ldquo;a&rdquo;</td></tr><tr><td>&ldquo;a B z&rdquo;</td><td>4</td><td>&ldquo;e F d&rdquo;</td></tr></tbody></table></details><h3 id=풀이-2>풀이</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=kd>function</span> <span class=nx>solution</span><span class=p>(</span><span class=nx>s</span><span class=p>,</span> <span class=nx>n</span><span class=p>)</span> <span class=p>{</span>
+  <span class=kd>var</span> <span class=nx>answer</span> <span class=o>=</span> <span class=nx>s</span>
+    <span class=p>.</span><span class=nx>split</span><span class=p>(</span><span class=s2>&#34;&#34;</span><span class=p>)</span>
+    <span class=p>.</span><span class=nx>map</span><span class=p>((</span><span class=nx>item</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+      <span class=k>if</span> <span class=p>(</span><span class=nx>item</span> <span class=o>===</span> <span class=s2>&#34; &#34;</span><span class=p>)</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=nx>item</span><span class=p>;</span>
+      <span class=p>}</span>
+
+      <span class=kd>var</span> <span class=nx>charCode</span> <span class=o>=</span> <span class=nx>item</span><span class=p>.</span><span class=nx>charCodeAt</span><span class=p>();</span>
+      <span class=kd>var</span> <span class=nx>result</span> <span class=o>=</span> <span class=nx>charCode</span> <span class=o>+</span> <span class=nx>n</span><span class=p>;</span>
+
+      <span class=k>if</span> <span class=p>((</span><span class=nx>charCode</span> <span class=o>&lt;=</span> <span class=mi>90</span> <span class=o>&amp;&amp;</span> <span class=nx>result</span> <span class=o>&gt;</span> <span class=mi>90</span><span class=p>)</span> <span class=o>||</span> <span class=p>(</span><span class=nx>charCode</span> <span class=o>&gt;=</span> <span class=mi>97</span> <span class=o>&amp;&amp;</span> <span class=nx>result</span> <span class=o>&gt;</span> <span class=mi>122</span><span class=p>))</span> <span class=p>{</span>
+        <span class=nx>result</span> <span class=o>-=</span> <span class=mi>26</span><span class=p>;</span>
+      <span class=p>}</span>
+
+      <span class=k>return</span> <span class=nb>String</span><span class=p>.</span><span class=nx>fromCharCode</span><span class=p>(</span><span class=nx>result</span><span class=p>);</span>
+    <span class=p>})</span>
+    <span class=p>.</span><span class=nx>join</span><span class=p>(</span><span class=s2>&#34;&#34;</span><span class=p>);</span>
+
+  <span class=k>return</span> <span class=nx>answer</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>charCode를 n만큼 증가시키면 된다. 다만 z는 a로 Z는 A로 돌아가야 하기 때문에 if문을 이용해 변할 charCode와 결과값을 비교해 알파뱃 개수인 26만큼 빼주는 로직을 추가해 주었다. charCode를 다시 문자로 치환하는 함수는 String의 메소드인 fromCharCode이다. 외워두도록 해야겠다.</p><hr><h2 id=약수의-합>약수의 합</h2><details><summary>문제 보기</summary><p>정수 n을 입력받아 n의 약수를 모두 더한 값을 리턴하는 함수, solution을 완성해주세요.</p><h3 id=제한-조건-3>제한 조건</h3><ul><li>n은 0 이상 3000이하인 정수입니다.</li></ul><h3 id=입출력-예-3>입출력 예</h3><table><thead><tr><th>n</th><th>return</th></tr></thead><tbody><tr><td>12</td><td>28</td></tr><tr><td>5</td><td>6</td></tr></tbody></table><h3 id=입출력-예-설명>입출력 예 설명</h3><ul><li>입출력 예 #1<br>12의 약수는 1, 2, 3, 4, 6, 12입니다. 이를 모두 더하면 28입니다.</li><li>입출력 예 #2<br>5의 약수는 1, 5입니다. 이를 모두 더하면 6입니다.</li></ul></details><h3 id=풀이-3>풀이</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=kd>function</span> <span class=nx>solution</span><span class=p>(</span><span class=nx>n</span><span class=p>)</span> <span class=p>{</span>
+  <span class=kd>var</span> <span class=nx>answer</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+  <span class=k>for</span> <span class=p>(</span><span class=kd>var</span> <span class=nx>i</span> <span class=o>=</span> <span class=mi>1</span><span class=p>;</span> <span class=nx>i</span> <span class=o>&lt;=</span> <span class=nx>n</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
+    <span class=k>if</span> <span class=p>(</span><span class=nx>n</span> <span class=o>%</span> <span class=nx>i</span> <span class=o>===</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+      <span class=nx>answer</span> <span class=o>+=</span> <span class=nx>i</span><span class=p>;</span>
+    <span class=p>}</span>
+  <span class=p>}</span>
+  <span class=k>return</span> <span class=nx>answer</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>n을 1부터 나누어 나머지가 0인 수 = 약수를 찾아 더해준다.</p><hr><h2 id=이상한-문자-만들기>이상한 문자 만들기</h2><details><summary>문제 보기</summary><p>문자열 s는 한 개 이상의 단어로 구성되어 있습니다. 각 단어는 하나 이상의 공백문자로 구분되어 있습니다. 각 단어의 짝수번째 알파벳은 대문자로, 홀수번째 알파벳은 소문자로 바꾼 문자열을 리턴하는 함수, solution을 완성하세요.</p><h3 id=제한-조건-4>제한 조건</h3><ul><li>문자열 전체의 짝/홀수 인덱스가 아니라, 단어(공백을 기준)별로 짝/홀수 인덱스를 판단해야합니다.</li><li>첫 번째 글자는 0번째 인덱스로 보아 짝수번째 알파벳으로 처리해야 합니다.</li></ul><h3 id=입출력-예-4>입출력 예</h3><table><thead><tr><th>s</th><th>return</th></tr></thead><tbody><tr><td>&ldquo;try hello world&rdquo;</td><td>&ldquo;TrY HeLlO WoRlD&rdquo;</td></tr></tbody></table><h3 id=입출력-예-설명-1>입출력 예 설명</h3><p>&ldquo;try hello world"는 세 단어 &ldquo;try&rdquo;, &ldquo;hello&rdquo;, &ldquo;world"로 구성되어 있습니다. 각 단어의 짝수번째 문자를 대문자로, 홀수번째 문자를 소문자로 바꾸면 &ldquo;TrY&rdquo;, &ldquo;HeLlO&rdquo;, &ldquo;WoRlD"입니다. 따라서 &ldquo;TrY HeLlO WoRlD&rdquo; 를 리턴합니다.</p></details><h3 id=풀이-4>풀이</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=kd>function</span> <span class=nx>solution</span><span class=p>(</span><span class=nx>s</span><span class=p>)</span> <span class=p>{</span>
+  <span class=k>return</span> <span class=nx>s</span>
+    <span class=p>.</span><span class=nx>split</span><span class=p>(</span><span class=s2>&#34; &#34;</span><span class=p>)</span>
+    <span class=p>.</span><span class=nx>map</span><span class=p>((</span><span class=nx>word</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+      <span class=k>return</span> <span class=nx>word</span>
+        <span class=p>.</span><span class=nx>split</span><span class=p>(</span><span class=s2>&#34;&#34;</span><span class=p>)</span>
+        <span class=p>.</span><span class=nx>map</span><span class=p>((</span><span class=kr>char</span><span class=p>,</span> <span class=nx>index</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+          <span class=k>return</span> <span class=nx>index</span> <span class=o>%</span> <span class=mi>2</span> <span class=o>===</span> <span class=mi>0</span> <span class=o>?</span> <span class=kr>char</span><span class=p>.</span><span class=nx>toUpperCase</span><span class=p>()</span> <span class=o>:</span> <span class=kr>char</span><span class=p>.</span><span class=nx>toLowerCase</span><span class=p>();</span>
+        <span class=p>})</span>
+        <span class=p>.</span><span class=nx>join</span><span class=p>(</span><span class=s2>&#34;&#34;</span><span class=p>);</span>
+    <span class=p>})</span>
+    <span class=p>.</span><span class=nx>join</span><span class=p>(</span><span class=s2>&#34; &#34;</span><span class=p>);</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><hr><h2 id=자릿수-더하기>자릿수 더하기</h2><details><summary>문제 보기</summary><p>자연수 N이 주어지면, N의 각 자릿수의 합을 구해서 return 하는 solution 함수를 만들어 주세요.<br>예를들어 N = 123이면 1 + 2 + 3 = 6을 return 하면 됩니다.</p><h3 id=제한-조건-5>제한 조건</h3><ul><li>N의 범위 : 100,000,000 이하의 자연수</li></ul><h3 id=입출력-예-5>입출력 예</h3><table><thead><tr><th>N</th><th>answer</th></tr></thead><tbody><tr><td>123</td><td>6</td></tr><tr><td>987</td><td>24</td></tr></tbody></table><h3 id=입출력-예-설명-2>입출력 예 설명</h3><ul><li>입출력 예 #1<br>문제의 예시와 같습니다.</li><li>입출력 예 #2<br>9 + 8 + 7 = 24이므로 24를 return 하면 됩니다.</li></ul></details><h3 id=풀이-5>풀이</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=kd>function</span> <span class=nx>solution</span><span class=p>(</span><span class=nx>n</span><span class=p>)</span> <span class=p>{</span>
+  <span class=k>return</span> <span class=p>(</span><span class=s2>&#34;&#34;</span> <span class=o>+</span> <span class=nx>n</span><span class=p>).</span><span class=nx>split</span><span class=p>(</span><span class=s2>&#34;&#34;</span><span class=p>).</span><span class=nx>reduce</span><span class=p>((</span><span class=nx>acc</span><span class=p>,</span> <span class=nx>curr</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+    <span class=k>return</span> <span class=nx>acc</span> <span class=o>+</span> <span class=nb>parseInt</span><span class=p>(</span><span class=nx>curr</span><span class=p>);</span>
+  <span class=p>},</span> <span class=mi>0</span><span class=p>);</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>처음엔 위처럼 문자로 치환해서 한 글자씩 더해주는 풀이를 했는데 아래와 같은 방법도 있다고 해서 적어둔다. 무조건 문자로 쪼개서 푸는 것보단 수학적인 접근을 하는 방법을 항상 생각해야겠다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=kd>function</span> <span class=nx>solution</span><span class=p>(</span><span class=nx>n</span><span class=p>)</span> <span class=p>{</span>
+  <span class=kd>var</span> <span class=nx>sum</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+  <span class=k>while</span> <span class=p>(</span><span class=nx>n</span> <span class=o>&gt;</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+    <span class=nx>sum</span> <span class=o>+=</span> <span class=nx>n</span> <span class=o>%</span> <span class=mi>10</span><span class=p>;</span>
+    <span class=nx>n</span> <span class=o>=</span> <span class=nb>parseInt</span><span class=p>(</span><span class=nx>n</span> <span class=o>/</span> <span class=mi>10</span><span class=p>);</span>
+  <span class=p>}</span>
+  <span class=k>return</span> <span class=nx>sum</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><hr><h2 id=자연수-뒤집어-배열로-만들기>자연수 뒤집어 배열로 만들기</h2><details><summary>문제 보기</summary><p>자연수 n을 뒤집어 각 자리 숫자를 원소로 가지는 배열 형태로 리턴해주세요. 예를들어 n이 12345이면 [5,4,3,2,1]을 리턴합니다.</p><h3 id=제한-조건-6>제한 조건</h3><ul><li>n은 10,000,000,000이하인 자연수입니다.</li></ul><h3 id=입출력-예-6>입출력 예</h3><table><thead><tr><th>n</th><th>return</th></tr></thead><tbody><tr><td>12345</td><td>[5,4,3,2,1]</td></tr></tbody></table></details><h3 id=풀이-6>풀이</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=kd>function</span> <span class=nx>solution</span><span class=p>(</span><span class=nx>n</span><span class=p>)</span> <span class=p>{</span>
+  <span class=k>return</span> <span class=p>(</span><span class=s2>&#34;&#34;</span> <span class=o>+</span> <span class=nx>n</span><span class=p>)</span>
+    <span class=p>.</span><span class=nx>split</span><span class=p>(</span><span class=s2>&#34;&#34;</span><span class=p>)</span>
+    <span class=p>.</span><span class=nx>reverse</span><span class=p>()</span>
+    <span class=p>.</span><span class=nx>map</span><span class=p>((</span><span class=nx>item</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=o>+</span><span class=nx>item</span><span class=p>);</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>설명이 딱히 필요없을만큼 간단한다. 다른 방법이 있다면, 바로 전 &ldquo;자릿수 더하기"문제에서 처럼 1의 자리수를 구해 새로운 배열에 push해주는 방법 또한 있을 것 같다.</p><hr><h2 id=정수-내림차순으로-배치하기>정수 내림차순으로 배치하기</h2><details><summary>문제 보기</summary><p>함수 solution은 정수 n을 매개변수로 입력받습니다. n의 각 자릿수를 큰것부터 작은 순으로 정렬한 새로운 정수를 리턴해주세요. 예를들어 n이 118372면 873211을 리턴하면 됩니다.</p><h3 id=제한-조건-7>제한 조건</h3><ul><li>n은 1이상 8000000000 이하인 자연수입니다.</li></ul><h3 id=입출력-예-7>입출력 예</h3><table><thead><tr><th>n</th><th>return</th></tr></thead><tbody><tr><td>118372</td><td>873211</td></tr></tbody></table></details><h3 id=풀이-7>풀이</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=kd>function</span> <span class=nx>solution</span><span class=p>(</span><span class=nx>n</span><span class=p>)</span> <span class=p>{</span>
+  <span class=k>return</span> <span class=nb>parseInt</span><span class=p>(</span>
+    <span class=p>(</span><span class=s2>&#34;&#34;</span> <span class=o>+</span> <span class=nx>n</span><span class=p>)</span>
+      <span class=p>.</span><span class=nx>split</span><span class=p>(</span><span class=s2>&#34;&#34;</span><span class=p>)</span>
+      <span class=p>.</span><span class=nx>sort</span><span class=p>((</span><span class=nx>a</span><span class=p>,</span> <span class=nx>b</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=nx>b</span> <span class=o>-</span> <span class=nx>a</span><span class=p>)</span>
+      <span class=p>.</span><span class=nx>join</span><span class=p>(</span><span class=s2>&#34;&#34;</span><span class=p>)</span>
+  <span class=p>);</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>문자열 치환 > 배열 > 내림차순 정렬 > 문자열 합치기 > 정수형 치환</p><hr><h2 id=정수-제곱근-판별>정수 제곱근 판별</h2><details><summary>문제 보기</summary><p>임의의 양의 정수 n에 대해, n이 어떤 양의 정수 x의 제곱인지 아닌지 판단하려 합니다.<br>n이 양의 정수 x의 제곱이라면 x+1의 제곱을 리턴하고, n이 양의 정수 x의 제곱이 아니라면 -1을 리턴하는 함수를 완성하세요.</p><h3 id=제한-조건-8>제한 조건</h3><ul><li>n은 1이상, 50000000000000 이하인 양의 정수입니다.</li></ul><h3 id=입출력-예-8>입출력 예</h3><table><thead><tr><th>n</th><th>return</th></tr></thead><tbody><tr><td>121</td><td>144</td></tr><tr><td>3</td><td>-1</td></tr></tbody></table><h3 id=입출력-예-설명-3>입출력 예 설명</h3><ul><li>입출력 예#1<br>121은 양의 정수 11의 제곱이므로, (11+1)를 제곱한 144를 리턴합니다.</li><li>입출력 예#2<br>3은 양의 정수의 제곱이 아니므로, -1을 리턴합니다.</li></ul></details><h3 id=풀이-8>풀이</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=kd>function</span> <span class=nx>solution</span><span class=p>(</span><span class=nx>n</span><span class=p>)</span> <span class=p>{</span>
+  <span class=kd>var</span> <span class=nx>sqrt</span> <span class=o>=</span> <span class=nb>Math</span><span class=p>.</span><span class=nx>sqrt</span><span class=p>(</span><span class=nx>n</span><span class=p>);</span>
+
+  <span class=k>if</span> <span class=p>(</span><span class=nx>sqrt</span> <span class=o>===</span> <span class=nb>parseInt</span><span class=p>(</span><span class=nx>sqrt</span><span class=p>))</span> <span class=p>{</span>
+    <span class=k>return</span> <span class=p>(</span><span class=nx>sqrt</span> <span class=o>+</span> <span class=mi>1</span><span class=p>)</span> <span class=o>**</span> <span class=mi>2</span><span class=p>;</span>
+  <span class=p>}</span>
+
+  <span class=k>return</span> <span class=o>-</span><span class=mi>1</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>주어진 수의 제곱근이 양의 정수 x와 같으면 되기 때문에 간단하게 해결 가능하다.
+<code>sqrt ** 2 === n</code> 으로도 비교가 가능하다.</p><hr><h2 id=문자열-내-마음대로-정렬하기>문자열 내 마음대로 정렬하기</h2><details><summary>문제 보기</summary><p>문자열로 구성된 리스트 strings와, 정수 n이 주어졌을 때, 각 문자열의 인덱스 n번째 글자를 기준으로 오름차순 정렬하려 합니다. 예를 들어 strings가 [&ldquo;sun&rdquo;, &ldquo;bed&rdquo;, &ldquo;car&rdquo;]이고 n이 1이면 각 단어의 인덱스 1의 문자 &ldquo;u&rdquo;, &ldquo;e&rdquo;, &ldquo;a"로 strings를 정렬합니다.</p><h3 id=제한-조건-9>제한 조건</h3><ul><li>strings는 길이 1 이상, 50이하인 배열입니다.</li><li>strings의 원소는 소문자 알파벳으로 이루어져 있습니다.</li><li>strings의 원소는 길이 1 이상, 100이하인 문자열입니다.</li><li>모든 strings의 원소의 길이는 n보다 큽니다.</li><li>인덱스 1의 문자가 같은 문자열이 여럿 일 경우, 사전순으로 앞선 문자열이 앞쪽에 위치합니다.</li></ul><h3 id=입출력-예-9>입출력 예</h3><table><thead><tr><th>strings</th><th>n</th><th>return</th></tr></thead><tbody><tr><td>[&ldquo;sun&rdquo;, &ldquo;bed&rdquo;, &ldquo;car&rdquo;]</td><td>1</td><td>[&ldquo;car&rdquo;, &ldquo;bed&rdquo;, &ldquo;sun&rdquo;]</td></tr><tr><td>[&ldquo;abce&rdquo;, &ldquo;abcd&rdquo;, &ldquo;cdx&rdquo;]</td><td>2</td><td>[&ldquo;abcd&rdquo;, &ldquo;abce&rdquo;, &ldquo;cdx&rdquo;]</td></tr></tbody></table><h3 id=입출력-예-설명-4>입출력 예 설명</h3><ul><li>입출력 예 1<br>&ldquo;sun&rdquo;, &ldquo;bed&rdquo;, &ldquo;car"의 1번째 인덱스 값은 각각 &ldquo;u&rdquo;, &ldquo;e&rdquo;, &ldquo;a&rdquo; 입니다. 이를 기준으로 strings를 정렬하면 [&ldquo;car&rdquo;, &ldquo;bed&rdquo;, &ldquo;sun&rdquo;] 입니다.</li><li>입출력 예 2<br>&ldquo;abce"와 &ldquo;abcd&rdquo;, &ldquo;cdx"의 2번째 인덱스 값은 &ldquo;c&rdquo;, &ldquo;c&rdquo;, &ldquo;x"입니다. 따라서 정렬 후에는 &ldquo;cdx"가 가장 뒤에 위치합니다. &ldquo;abce"와 &ldquo;abcd"는 사전순으로 정렬하면 &ldquo;abcd"가 우선하므로, 답은 [&ldquo;abcd&rdquo;, &ldquo;abce&rdquo;, &ldquo;cdx&rdquo;] 입니다.</li></ul></details><h3 id=풀이-9>풀이</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=kd>function</span> <span class=nx>solution</span><span class=p>(</span><span class=nx>strings</span><span class=p>,</span> <span class=nx>n</span><span class=p>)</span> <span class=p>{</span>
+  <span class=kd>var</span> <span class=nx>answer</span> <span class=o>=</span> <span class=nx>strings</span><span class=p>.</span><span class=nx>sort</span><span class=p>((</span><span class=nx>a</span><span class=p>,</span> <span class=nx>b</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+    <span class=k>if</span> <span class=p>(</span><span class=nx>a</span><span class=p>[</span><span class=nx>n</span><span class=p>]</span> <span class=o>===</span> <span class=nx>b</span><span class=p>[</span><span class=nx>n</span><span class=p>])</span> <span class=p>{</span>
+      <span class=k>return</span> <span class=nx>a</span><span class=p>.</span><span class=nx>localeCompare</span><span class=p>(</span><span class=nx>b</span><span class=p>);</span>
+    <span class=p>}</span>
+
+    <span class=k>return</span> <span class=nx>a</span><span class=p>[</span><span class=nx>n</span><span class=p>].</span><span class=nx>localeCompare</span><span class=p>(</span><span class=nx>b</span><span class=p>[</span><span class=nx>n</span><span class=p>]);</span>
+  <span class=p>});</span>
+
+  <span class=k>return</span> <span class=nx>answer</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>인덱스 값으로 정렬하라는 말을 처음엔 이해하지 못했는데, 뜻을 알고나니 간단했다. <em>입출력 예 1</em>을 기준으로 설명하면, u, e, a 를 기준으로 정렬하면 알파벳 순서대로 a, e, u가 되니 각 인덱스 값이 a, e, u인 car, bed, sun 순서가 되는 것이다.</p><p>추가 제한 조건으로는 인덱스 값이 같을 경우는 인덱스 값 순서가 아닌 사전 순 정렬을 하게 되면 된다.</p><p><code>localeCompare</code>는 문자열을 비교하는 함수이다. 사전순으로 비교하기 때문에 문제에 아주 적합한 함수이다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=s2>&#34;a&#34;</span><span class=p>.</span><span class=nx>localeCompare</span><span class=p>(</span><span class=s2>&#34;a&#34;</span><span class=p>);</span> <span class=c1>// 0
+</span><span class=c1></span><span class=s2>&#34;A&#34;</span><span class=p>.</span><span class=nx>localeCompare</span><span class=p>(</span><span class=s2>&#34;B&#34;</span><span class=p>);</span> <span class=c1>// -1
+</span><span class=c1></span><span class=s2>&#34;B&#34;</span><span class=p>.</span><span class=nx>localeCompare</span><span class=p>(</span><span class=s2>&#34;A&#34;</span><span class=p>);</span> <span class=c1>// 1
+</span></code></pre></td></tr></table></div></div><hr></div></div><div class=container><nav class="flex container suggested"><a rel=prev href=/post/codingtest/2019-12-14-programmers-%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C1/ title="Previous post (older)"><span>Previous</span>
+Level 1 연습문제 (1) - 프로그래머스 코딩테스트 연습</a>
+<a rel=next href=/post/codingtest/2019-12-20-programmers-%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C3/ title="Next post (newer)"><span>Next</span>
+Level 1 연습문제 (3) - 프로그래머스 코딩테스트 연습</a></nav></div></main></main><footer class="footer flex"><section class=container><nav class=footer-links><a href=/index.xml>RSS</a></nav></section><script async src=/js/features.min.c5d8f3350f5a652f526b982306299353824299adb7a3bd261ecffacc47087f66.js></script></footer></body></html>

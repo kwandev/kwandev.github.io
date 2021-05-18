@@ -1,0 +1,204 @@
+<!doctype html><html lang=ko><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=theme-color content="dark"><title>JavaScript this 정리 | KwanDev</title><link rel=stylesheet href=/sass/main.min.85012d0996f0380c1d60b7c11fa7cb08a3783fc0e0b2a87d95171cec3f4fa20a.css></head><body class=dark><nav class=navbar><div class=container><div class=flex><div><a class=brand href=/><span class=emoji>😎</span>
+KwanDev</a></div><div class=flex><a href=/articles/>Articles</a>
+<button id=dark-mode-button></button></div></div></div></nav><main><div class=container><article><header class=article-header><div class=thumb><div><h1>JavaScript this 정리</h1><div class=post-meta><div><time>October 09, 2019</time></div><div class=tags><a href=/tags/javascript/>JavaScript</a></div></div></div></div></header></article><div class=article-post><p>자바스크립트에서 <code>this</code>는 호출되는 방식에 따라 달라지기 때문에 이해하기 너무 어려운 관계로 아예 대표적인 몇 가지를 그냥 외워버리기로 함.</p><h3 id=1-자유함수-호출>1. 자유함수 호출</h3><p>가장 기본적인 경우, 별다른 조건이 없을 때에 <em>this</em>는 전역객체를 바라본다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=k>this</span> <span class=o>===</span> <span class=nb>window</span><span class=p>);</span> <span class=c1>// true
+</span><span class=c1></span><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>toString</span><span class=p>.</span><span class=nx>call</span><span class=p>(</span><span class=k>this</span><span class=p>));</span> <span class=c1>// [object Window]
+</span><span class=c1></span>
+<span class=kd>function</span> <span class=nx>freeFunction</span><span class=p>()</span> <span class=p>{</span>
+  <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=k>this</span> <span class=o>===</span> <span class=nb>window</span><span class=p>);</span> <span class=c1>// true
+</span><span class=c1></span><span class=p>}</span>
+<span class=nx>freeFunction</span><span class=p>();</span>
+</code></pre></td></tr></table></div></div><blockquote><p>browser의 전역객체는 window<br>node의 전역객체는 global</p></blockquote><h3 id=2-생성자-호출>2. 생성자 호출</h3><p><em>new</em> 키워드를 이용한 생성자 호출시에 함수 내부 <em>this</em>는 새로운 객체를 바라본다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=kd>function</span> <span class=nx>NewFunction</span><span class=p>()</span> <span class=p>{</span>
+  <span class=k>this</span><span class=p>.</span><span class=nx>name</span> <span class=o>=</span> <span class=s2>&#34;이름&#34;</span><span class=p>;</span>
+
+  <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=k>this</span><span class=p>);</span> <span class=c1>// NewFunction
+</span><span class=c1></span>  <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>toString</span><span class=p>.</span><span class=nx>call</span><span class=p>(</span><span class=k>this</span><span class=p>));</span> <span class=c1>// [object Object]
+</span><span class=c1></span>  <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>name</span><span class=p>);</span> <span class=c1>// 이름
+</span><span class=c1></span><span class=p>}</span>
+
+<span class=cm>/* 생성자 호출 */</span>
+<span class=kd>let</span> <span class=nx>fun</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>NewFunction</span><span class=p>();</span>
+<span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>fun</span><span class=p>.</span><span class=nx>name</span><span class=p>);</span> <span class=c1>// 이름
+</span><span class=c1></span>
+<span class=cm>/* 일반함수 호출 */</span>
+<span class=kd>let</span> <span class=nx>fun2</span> <span class=o>=</span> <span class=nx>NewFunction</span><span class=p>();</span>
+<span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>fun2</span><span class=p>.</span><span class=nx>name</span><span class=p>);</span> <span class=c1>// Uncaught TypeError: Cannot read property &#39;name&#39; of undefined
+</span></code></pre></td></tr></table></div></div><h3 id=3-object의-method-호출>3. Object의 Method 호출</h3><p>Object의 Method를 호출했을 때엔 <em>this</em>는 Object를 가리킨다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=kd>let</span> <span class=nx>car</span> <span class=o>=</span> <span class=p>{</span>
+  <span class=nx>name</span><span class=o>:</span> <span class=s2>&#34;myCar&#34;</span><span class=p>,</span>
+  <span class=nx>color</span><span class=o>:</span> <span class=s2>&#34;red&#34;</span><span class=p>,</span>
+  <span class=cm>/* Method */</span>
+  <span class=nx>getName</span><span class=o>:</span> <span class=kd>function</span> <span class=p>()</span> <span class=p>{</span>
+    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=k>this</span><span class=p>);</span> <span class=c1>// car {name: &#39;myColor&#39;, color: &#39;red&#39;, getName () ... }
+</span><span class=c1></span>    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>name</span><span class=p>);</span> <span class=c1>// myCar
+</span><span class=c1></span>  <span class=p>},</span>
+  <span class=cm>/* Method 축약형 */</span>
+  <span class=nx>getColor</span><span class=p>()</span> <span class=p>{</span>
+    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=k>this</span><span class=p>);</span> <span class=c1>// car {name: &#39;myColor&#39;, color: &#39;red&#39;, getName () ... }
+</span><span class=c1></span>    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>color</span><span class=p>);</span> <span class=c1>// red
+</span><span class=c1></span>  <span class=p>},</span>
+  <span class=cm>/* arrow function의 경우 다른 규칙이 적용된다. 4번 참고 */</span>
+  <span class=nx>getArrow</span><span class=o>:</span> <span class=p>()</span> <span class=p>=&gt;</span> <span class=p>{</span>
+    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=k>this</span><span class=p>);</span> <span class=c1>// Window
+</span><span class=c1></span>    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>name</span><span class=p>);</span> <span class=c1>// undefined
+</span><span class=c1></span>    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>color</span><span class=p>);</span> <span class=c1>// undefined
+</span><span class=c1></span>  <span class=p>},</span>
+<span class=p>};</span>
+
+<span class=nx>car</span><span class=p>.</span><span class=nx>getColor</span><span class=p>();</span>
+<span class=nx>car</span><span class=p>.</span><span class=nx>getName</span><span class=p>();</span>
+<span class=nx>car</span><span class=p>.</span><span class=nx>getArrow</span><span class=p>();</span>
+</code></pre></td></tr></table></div></div><h3 id=4-arrow-function-호출>4. Arrow Function 호출</h3><p>ES6에서 추가된 Arrow Function의 경우, 생성된 시점의 주변 스코프의 <em>this</em>를 갖게된다</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=kd>let</span> <span class=nx>office</span> <span class=o>=</span> <span class=p>{</span>
+  <span class=nx>pencil</span><span class=o>:</span> <span class=mi>4</span><span class=p>,</span>
+  <span class=nx>getArrow</span><span class=o>:</span> <span class=p>()</span> <span class=p>=&gt;</span> <span class=p>{</span>
+    <span class=cm>/*
+</span><span class=cm>      getArrow가 생성될 때의 주변 스코프인 office 객체,
+</span><span class=cm>      office 객체의 this는 Window객체이므로 getArrow의 this는 Window를 바라본다
+</span><span class=cm>    */</span>
+    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=k>this</span><span class=p>);</span> <span class=c1>// Window
+</span><span class=c1></span>    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>pencil</span><span class=p>);</span> <span class=c1>// undefined
+</span><span class=c1></span>  <span class=p>},</span>
+  <span class=nx>getPencil</span><span class=p>()</span> <span class=p>{</span>
+    <span class=cm>/* getPencil은 일반적인 method이므로 위의 3번 규칙을 따라 this는 office 객체를 바라본다 */</span>
+    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>pencil</span><span class=p>);</span> <span class=c1>// 4
+</span><span class=c1></span>
+    <span class=kd>let</span> <span class=nx>getPpencilFun</span> <span class=o>=</span> <span class=kd>function</span> <span class=p>()</span> <span class=p>{</span>
+      <span class=cm>/* 1번규칙인 일반 함수 호출에 의해 Window를 바라본다 */</span>
+      <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>pencil</span><span class=p>);</span> <span class=c1>// undefined
+</span><span class=c1></span>    <span class=p>};</span>
+    <span class=nx>getPpencilFun</span><span class=p>();</span>
+
+    <span class=kd>let</span> <span class=nx>getPencilArrow</span> <span class=o>=</span> <span class=p>()</span> <span class=p>=&gt;</span> <span class=p>{</span>
+      <span class=cm>/*
+</span><span class=cm>        getPencilArrow arrow function 규칙에 의해
+</span><span class=cm>        getPencil method가 생성될 때의 this인 office 객체를 바라본다
+</span><span class=cm>      */</span>
+      <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>pencil</span><span class=p>);</span> <span class=c1>// 4
+</span><span class=c1></span>    <span class=p>};</span>
+    <span class=nx>getPencilArrow</span><span class=p>();</span>
+  <span class=p>},</span>
+<span class=p>};</span>
+
+<span class=nx>office</span><span class=p>.</span><span class=nx>getArrow</span><span class=p>();</span>
+<span class=nx>office</span><span class=p>.</span><span class=nx>getPencil</span><span class=p>();</span>
+</code></pre></td></tr></table></div></div><h3 id=5-call-apply-bind로-함수-호출>5. call, apply, bind로 함수 호출</h3><p>각각 함수를 호출하고, 정의하는 Function의 메소드이다. 첫번째 인자를 통해 this를 변경할 수 있다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=kd>let</span> <span class=nx>office</span> <span class=o>=</span> <span class=p>{</span>
+  <span class=nx>paper</span><span class=o>:</span> <span class=mi>100</span><span class=p>,</span>
+  <span class=nx>getPaper</span><span class=p>()</span> <span class=p>{</span>
+    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>paper</span><span class=p>);</span>
+  <span class=p>},</span>
+<span class=p>};</span>
+
+<span class=kd>let</span> <span class=nx>home</span> <span class=o>=</span> <span class=p>{</span>
+  <span class=nx>paper</span><span class=o>:</span> <span class=mi>10</span><span class=p>,</span>
+<span class=p>};</span>
+
+<span class=nx>office</span><span class=p>.</span><span class=nx>getPaper</span><span class=p>();</span> <span class=c1>// 100: 일반함수 메소드 호출
+</span><span class=c1></span><span class=nx>office</span><span class=p>.</span><span class=nx>getPaper</span><span class=p>.</span><span class=nx>call</span><span class=p>(</span><span class=nx>home</span><span class=p>);</span> <span class=c1>// 10: 해당함수의 this를 home객체로 변경
+</span><span class=c1></span><span class=nx>office</span><span class=p>.</span><span class=nx>getPaper</span><span class=p>.</span><span class=nx>call</span><span class=p>(</span><span class=k>this</span><span class=p>);</span> <span class=c1>// undefined: this가 Window로 변경
+</span><span class=c1></span><span class=nx>office</span><span class=p>.</span><span class=nx>getPaper</span><span class=p>.</span><span class=nx>call</span><span class=p>(</span><span class=kc>null</span><span class=p>);</span> <span class=c1>// undefined: this가 지정이 안되어 있으므로, 기본 함수의 this인 Window를 봄
+</span><span class=c1></span><span class=nx>office</span><span class=p>.</span><span class=nx>getPaper</span><span class=p>.</span><span class=nx>call</span><span class=p>();</span> <span class=c1>// undefined: 상동
+</span><span class=c1></span>
+<span class=nx>office</span><span class=p>.</span><span class=nx>getPaper</span><span class=p>.</span><span class=nx>apply</span><span class=p>(</span><span class=nx>home</span><span class=p>);</span> <span class=c1>// 10: 해당함수의 this를 home객체로 변경
+</span><span class=c1></span>
+<span class=kd>let</span> <span class=nx>bind</span> <span class=o>=</span> <span class=nx>office</span><span class=p>.</span><span class=nx>getPaper</span><span class=p>.</span><span class=nx>bind</span><span class=p>(</span><span class=nx>home</span><span class=p>);</span>
+<span class=nx>bind</span><span class=p>();</span> <span class=c1>// 10
+</span></code></pre></td></tr></table></div></div></div></div><div class=container><nav class="flex container suggested"><a rel=next href=/post/git/2019-10-26-review-git-zerocho/ title="Next post (newer)"><span>Next</span>
+12가지 명령어로 배우는 Git 리뷰</a></nav></div></main></main><footer class="footer flex"><section class=container><nav class=footer-links><a href=/index.xml>RSS</a></nav></section><script async src=/js/features.min.c5d8f3350f5a652f526b982306299353824299adb7a3bd261ecffacc47087f66.js></script></footer></body></html>
