@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>협업 on KwanDev</title><link>https://kwandev.github.io/tags/%ED%98%91%EC%97%85/</link><description>Recent content in 협업 on KwanDev</description><generator>Hugo -- gohugo.io</generator><language>ko</language><lastBuildDate>Sat, 10 Sep 2022 16:00:00 +0900</lastBuildDate><atom:link href="https://kwandev.github.io/tags/%ED%98%91%EC%97%85/index.xml" rel="self" type="application/rss+xml"/><item><title>깃 커밋 메시지 작성 방법</title><link>https://kwandev.github.io/post/git/2022-09-10-commit-message/</link><pubDate>Sat, 10 Sep 2022 16:00:00 +0900</pubDate><guid>https://kwandev.github.io/post/git/2022-09-10-commit-message/</guid><description>커밋 메시지란? 말 그대로 깃 커밋을 할 때 남기는 메시지. 나는 깃을 이용할 때에 CLI보단 Git Fork나 SourceTree같은 GUI툴을 사용하는 편이다.
+프로젝트를 진행하거나 실무를 진행할 때에도 혼자서만 작업을 진행하다보면 커밋 메시지를 딱히 신경쓰지 않게 되더라.
+그렇게 업무를 진행하다보면 이 부분에 대해서 의문이 생기고 뭔가 룰이 필요하다고 느끼는 순간이 온다.
+커밋 메시지가 필요하다고 생각한 이유 커밋 메시지를 마음대로 남기다 보면 분명 이 메시지에 규칙이 필요하다고 느끼는 순간이 오게된다.
+내가 느낀 지점은 크게 3가지가 작용했다.</description></item></channel></rss>
