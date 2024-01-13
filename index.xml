@@ -1,4 +1,56 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>KwanDev</title><link>https://kwandev.github.io/</link><description>Recent content on KwanDev</description><generator>Hugo -- gohugo.io</generator><language>ko</language><lastBuildDate>Sat, 10 Sep 2022 16:00:00 +0900</lastBuildDate><atom:link href="https://kwandev.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>깃 커밋 메시지 작성 방법</title><link>https://kwandev.github.io/post/git/2022-09-10-commit-message/</link><pubDate>Sat, 10 Sep 2022 16:00:00 +0900</pubDate><guid>https://kwandev.github.io/post/git/2022-09-10-commit-message/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>KwanDev</title><link>https://kwandev.github.io/</link><description>Recent content on KwanDev</description><generator>Hugo -- gohugo.io</generator><language>ko</language><lastBuildDate>Sat, 13 Jan 2024 15:00:00 +0900</lastBuildDate><atom:link href="https://kwandev.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>읽은 책 정리해보기</title><link>https://kwandev.github.io/post/etc/2024-01-13-reading-book/</link><pubDate>Sat, 13 Jan 2024 15:00:00 +0900</pubDate><guid>https://kwandev.github.io/post/etc/2024-01-13-reading-book/</guid><description>
+&lt;p>블로그를 쓴다고는 했지만, 글을 잘 쓰지 못하고 귀찮다는 핑계로 미룬게 벌써 몇 년.
+잘 못하는 글쓰기는 여전히 잘 못하기 때문에 독서 후기나 감상은 됐고.&lt;/p>
+&lt;p>그냥 읽은 책을 정리나 해보자.&lt;/p>
+&lt;p>1년 동안 어떤 책을 어떻게 읽는지, 기억나는 것은 있는지.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;strong>도서명&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>분야&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>유형&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>완료일&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>점수&lt;/strong>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>나는 네이버 프런트엔드 개발자입니다&lt;/td>
+&lt;td>IT&lt;/td>
+&lt;td>책&lt;/td>
+&lt;td>23/11&lt;/td>
+&lt;td>⭐️⭐️⭐️⭐️&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>요즘 우아한 개발&lt;/td>
+&lt;td>IT&lt;/td>
+&lt;td>전자책(PDF)&lt;/td>
+&lt;td>23/12&lt;/td>
+&lt;td>⭐️⭐️&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>개발자로 살아남기&lt;/td>
+&lt;td>IT&lt;/td>
+&lt;td>전자책(PDF)&lt;/td>
+&lt;td>23/12&lt;/td>
+&lt;td>⭐️⭐️⭐️⭐️&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>육각형 개발자&lt;/td>
+&lt;td>IT&lt;/td>
+&lt;td>전자책(PDF)&lt;/td>
+&lt;td>24/01&lt;/td>
+&lt;td>⭐️⭐️⭐️&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>기초부터 완성까지, 프런트엔드&lt;/td>
+&lt;td>IT&lt;/td>
+&lt;td>전자책(PDF)&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table></description></item><item><title>깃 커밋 메시지 작성 방법</title><link>https://kwandev.github.io/post/git/2022-09-10-commit-message/</link><pubDate>Sat, 10 Sep 2022 16:00:00 +0900</pubDate><guid>https://kwandev.github.io/post/git/2022-09-10-commit-message/</guid><description>
 &lt;h2 id="커밋-메시지란">커밋 메시지란?&lt;/h2>
 &lt;p>말 그대로 깃 커밋을 할 때 남기는 메시지.
 나는 깃을 이용할 때에 CLI보단 Git Fork나 SourceTree같은 GUI툴을 사용하는 편이다.&lt;/p>
