@@ -49,6 +49,13 @@
 &lt;td>24/02/12&lt;/td>
 &lt;td>⭐️⭐️⭐️&lt;/td>
 &lt;/tr>
+&lt;tr>
+&lt;td>요즘 개발자&lt;br>MZ 선배가 전하는 학습 커리어 브랜딩&lt;br>취업과 이직 협업 네트워킹 기술&lt;/td>
+&lt;td>IT&lt;/td>
+&lt;td>전자책(EPUB)&lt;/td>
+&lt;td>24/04/27&lt;/td>
+&lt;td>⭐️&lt;/td>
+&lt;/tr>
 &lt;/tbody>
 &lt;/table></description></item><item><title>깃 커밋 메시지 작성 방법</title><link>https://kwandev.github.io/post/git/2022-09-10-commit-message/</link><pubDate>Sat, 10 Sep 2022 16:00:00 +0900</pubDate><guid>https://kwandev.github.io/post/git/2022-09-10-commit-message/</guid><description>
 &lt;h2 id="커밋-메시지란">커밋 메시지란?&lt;/h2>
