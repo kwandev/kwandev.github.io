@@ -1,4 +1,34 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>KwanDev</title><link>https://kwandev.github.io/</link><description>Recent content on KwanDev</description><generator>Hugo -- gohugo.io</generator><language>ko</language><lastBuildDate>Sat, 07 Sep 2024 18:00:00 +0900</lastBuildDate><atom:link href="https://kwandev.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>커뮤사세 개발 후기</title><link>https://kwandev.github.io/post/me/2024-09-07-commu-sase-review/</link><pubDate>Sat, 07 Sep 2024 18:00:00 +0900</pubDate><guid>https://kwandev.github.io/post/me/2024-09-07-commu-sase-review/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>KwanDev</title><link>https://kwandev.github.io/</link><description>Recent content on KwanDev</description><generator>Hugo -- gohugo.io</generator><language>ko</language><lastBuildDate>Tue, 28 Jan 2025 15:00:00 +0900</lastBuildDate><atom:link href="https://kwandev.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>25년에 읽은 책 정리!</title><link>https://kwandev.github.io/post/etc/2025-01-28-reading-book/</link><pubDate>Tue, 28 Jan 2025 15:00:00 +0900</pubDate><guid>https://kwandev.github.io/post/etc/2025-01-28-reading-book/</guid><description>
+&lt;p>1년전 이맘 때 읽은 책을 &lt;a href="https://kwandev.github.io/post/etc/2024-01-13-reading-book/">정리하는 글을 썼었는데&lt;/a>, 막상 보니 얼마 읽지도 않았더라.&lt;/p>
+&lt;p>상반기에만 좀 읽고 하반기에는 읽는 시도조차 안한 느낌.&lt;/p>
+&lt;p>올해도 별 의미는 없지만 그냥 적어는 봐야겠다.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;strong>도서명&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>분야&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>유형&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>완료일&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>점수&lt;/strong>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>소프트웨어 장인&lt;/td>
+&lt;td>IT&lt;/td>
+&lt;td>전자책(EPUB)&lt;/td>
+&lt;td>25/01/10&lt;/td>
+&lt;td>⭐️⭐️⭐️⭐️&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>그로스 해킹&lt;/td>
+&lt;td>마케팅&lt;/td>
+&lt;td>전자책(EPUB)&lt;/td>
+&lt;td>25/01/25&lt;/td>
+&lt;td>⭐️⭐️⭐️&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table></description></item><item><title>커뮤사세 개발 후기</title><link>https://kwandev.github.io/post/me/2024-09-07-commu-sase-review/</link><pubDate>Sat, 07 Sep 2024 18:00:00 +0900</pubDate><guid>https://kwandev.github.io/post/me/2024-09-07-commu-sase-review/</guid><description>
 &lt;h2 id="개발-계기">개발 계기&lt;/h2>
 &lt;p>회사에서 일하다 보면, 매일이 반복되는 일상처럼 느껴질 때가 있지 않나?&lt;/p>
 &lt;p>나는 그랬다. 개발자로서 그저 주어진 일을 하며, &amp;lsquo;어떻게 하면 더 나은 개발자가 될까?&amp;lsquo;라는 고민은 하지만, 실제로는 아무런 변화를 시도하지 않으면서 하루하루를 보냈다. 무료한 일상. 그래서 무언가 새로운 시도를 해보고 싶었다.&lt;/p>
