@@ -1,10 +1,10 @@
-<!doctype html><html lang=ko><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=theme-color content="dark"><meta name=google-adsense-account content="ca-pub-4741358150977744"><title>JavaScript로 구현해보는 큐(Queue), 스택(Stack) | KwanDev</title><link rel=stylesheet href=/sass/main.min.85012d0996f0380c1d60b7c11fa7cb08a3783fc0e0b2a87d95171cec3f4fa20a.css><script async src="https://www.googletagmanager.com/gtag/js?id=G-KTWEFES8PN"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-KTWEFES8PN')</script></head><body class=dark><nav class=navbar><div class=container><div class=flex><div><a class=brand href=/><span class=emoji>😎</span>
-KwanDev</a></div><div class=flex><a href=/articles/>Articles</a>
+<!doctype html><html lang=ko><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=theme-color content="dark"><meta name=google-adsense-account content="ca-pub-4741358150977744"><title>JavaScript로 구현해보는 큐(Queue), 스택(Stack) | KwanDev</title><link rel=stylesheet href=/sass/main.min.60c3447ec18900e4050d340ea1f9afff753fe95903dea3cb6fc5c56c23ea170f.css><script async src="https://www.googletagmanager.com/gtag/js?id=G-KTWEFES8PN"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-KTWEFES8PN")</script></head><body class=dark><nav class=navbar><div class=container><div class=flex><div><a class=brand href=/><span class=emoji>😎
+</span>KwanDev</a></div><div class=flex><a href=/articles/>Articles</a>
 <a href=/tags/>Tags</a>
 <button id=dark-mode-button></button></div></div></div></nav><main><div class=container><article><header class=article-header><div class=thumb><div><h1>JavaScript로 구현해보는 큐(Queue), 스택(Stack)</h1><div><p>JavaScript로 가장 기본적인 자료구조형인 큐(Queue)와 스택(Stack)을 구현해보자</p></div><div class=post-meta><div><time>March 14, 2020</time></div><div class=tags><a href=/tags/javascript/>JavaScript</a>
 <a href=/tags/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/>자료구조</a>
 <a href=/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/>알고리즘</a></div></div></div></div></header></article><div class=article-post><p>지난 면접 중 한 번은 큐와 스택을 화이트보드에 간단하게 구현해보라는 시간이 있었다.
-코딩은 했지만 아쉬운 부분이 남아 다시 정리해본다.</p><p>큐와 스택은 가장 기본적인 자료구조형이면서 선형(linear)자료구조이다. 자바스크립트는 다른 언어와는 다르게 Array로 구현이 충분하기 때문에 각각 구현해보자.</p><h2 id=큐-queue>큐 (Queue)</h2><p>큐는 먼저 집어넣은 데이터가 먼저 나오는 선형자료구조이다. 이 특징을 줄여서 **FIFO(First In First Out)**라고 부른다.</p><ul><li>데이터를 집어넣는 <strong>enqueue</strong></li><li>데이터를 추출하는 <strong>dequeue</strong></li><li>현재 데이터의 길이 <strong>length</strong></li><li>다음에 나올 데이터를 확인하는 <strong>peek</strong></li><li>현재 큐가 비어있는지를 확인하는 <strong>isEmpty</strong></li><li>현재 큐를 초기화하는 <strong>clear</strong></li></ul><p>위 6가지 정도 기능만 구현해보도록 하자.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+코딩은 했지만 아쉬운 부분이 남아 다시 정리해본다.</p><p>큐와 스택은 가장 기본적인 자료구조형이면서 선형(linear)자료구조이다. 자바스크립트는 다른 언어와는 다르게 Array로 구현이 충분하기 때문에 각각 구현해보자.</p><h2 id=큐-queue>큐 (Queue)</h2><p>큐는 먼저 집어넣은 데이터가 먼저 나오는 선형자료구조이다. 이 특징을 줄여서 **FIFO(First In First Out)**라고 부른다.</p><ul><li>데이터를 집어넣는 <strong>enqueue</strong></li><li>데이터를 추출하는 <strong>dequeue</strong></li><li>현재 데이터의 길이 <strong>length</strong></li><li>다음에 나올 데이터를 확인하는 <strong>peek</strong></li><li>현재 큐가 비어있는지를 확인하는 <strong>isEmpty</strong></li><li>현재 큐를 초기화하는 <strong>clear</strong></li></ul><p>위 6가지 정도 기능만 구현해보도록 하자.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -55,59 +55,59 @@ KwanDev</a></div><div class=flex><a href=/articles/>Articles</a>
 </span><span class=lnt>49
 </span><span class=lnt>50
 </span><span class=lnt>51
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=kr>class</span> <span class=nx>Queue</span> <span class=p>{</span>
-  <span class=nx>constructor</span><span class=p>()</span> <span class=p>{</span>
-    <span class=k>this</span><span class=p>.</span><span class=nx>arr</span> <span class=o>=</span> <span class=p>[];</span>
-  <span class=p>}</span>
-
-  <span class=nx>enqueue</span><span class=p>(</span><span class=nx>value</span><span class=p>)</span> <span class=p>{</span>
-    <span class=k>this</span><span class=p>.</span><span class=nx>arr</span><span class=p>.</span><span class=nx>push</span><span class=p>(</span><span class=nx>value</span><span class=p>);</span>
-  <span class=p>}</span>
-
-  <span class=nx>dequeue</span><span class=p>()</span> <span class=p>{</span>
-    <span class=k>return</span> <span class=k>this</span><span class=p>.</span><span class=nx>arr</span><span class=p>.</span><span class=nx>shift</span><span class=p>();</span>
-  <span class=p>}</span>
-
-  <span class=nx>length</span><span class=p>()</span> <span class=p>{</span>
-    <span class=k>return</span> <span class=k>this</span><span class=p>.</span><span class=nx>arr</span><span class=p>.</span><span class=nx>length</span><span class=p>;</span>
-  <span class=p>}</span>
-
-  <span class=nx>peek</span><span class=p>()</span> <span class=p>{</span>
-    <span class=k>return</span> <span class=k>this</span><span class=p>.</span><span class=nx>arr</span><span class=p>[</span><span class=mi>0</span><span class=p>];</span>
-  <span class=p>}</span>
-
-  <span class=nx>isEmpty</span><span class=p>()</span> <span class=p>{</span>
-    <span class=k>return</span> <span class=k>this</span><span class=p>.</span><span class=nx>arr</span><span class=p>.</span><span class=nx>length</span> <span class=o>===</span> <span class=mi>0</span><span class=p>;</span>
-  <span class=p>}</span>
-
-  <span class=nx>clear</span><span class=p>()</span> <span class=p>{</span>
-    <span class=k>this</span><span class=p>.</span><span class=nx>arr</span> <span class=o>=</span> <span class=p>[];</span>
-  <span class=p>}</span>
-<span class=p>}</span>
-
-<span class=kr>const</span> <span class=nx>queue</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Queue</span><span class=p>();</span>
-
-<span class=c1>// 데이터 삽입
-</span><span class=c1></span><span class=nx>queue</span><span class=p>.</span><span class=nx>enqueue</span><span class=p>(</span><span class=mi>1</span><span class=p>);</span> <span class=c1>// arr: [1]
-</span><span class=c1></span><span class=nx>queue</span><span class=p>.</span><span class=nx>enqueue</span><span class=p>(</span><span class=mi>20</span><span class=p>);</span> <span class=c1>// arr: [1, 20]
-</span><span class=c1></span><span class=nx>queue</span><span class=p>.</span><span class=nx>enqueue</span><span class=p>(</span><span class=mi>300</span><span class=p>);</span> <span class=c1>// arr: [1, 20, 300]
-</span><span class=c1></span>
-<span class=c1>// 데이터 추출
-</span><span class=c1></span><span class=nx>queue</span><span class=p>.</span><span class=nx>dequeue</span><span class=p>();</span> <span class=c1>// 1
-</span><span class=c1></span>
-<span class=c1>// 현재 큐 길이
-</span><span class=c1></span><span class=nx>queue</span><span class=p>.</span><span class=nx>length</span><span class=p>();</span> <span class=c1>// 2
-</span><span class=c1></span>
-<span class=c1>// 다음에 추출될 데이터
-</span><span class=c1></span><span class=nx>queue</span><span class=p>.</span><span class=nx>peek</span><span class=p>();</span> <span class=c1>// 20
-</span><span class=c1></span>
-<span class=c1>// 큐가 비어있는지 확인
-</span><span class=c1></span><span class=nx>queue</span><span class=p>.</span><span class=nx>isEmpty</span><span class=p>();</span> <span class=c1>// false
-</span><span class=c1></span>
-<span class=c1>// 큐 초기화
-</span><span class=c1></span><span class=nx>queue</span><span class=p>.</span><span class=nx>clear</span><span class=p>();</span>
-</code></pre></td></tr></table></div></div><p>간단하게 구현이 가능하다. 여기서 조금 더 신경을 쓴다면, <code>dequeue</code>나 <code>peek</code>같은 경우는 배열이 비어있을 경우에는 <code>undefined</code>를 리턴할텐데 그 부분을 특정한 데이터나 메시지로 변환하는 정도, 또는 비어있다고 에러메시지를 주는 정도로 튜닝이 가능하겠다.</p><hr><h1 id=스택-stack>스택 (Stack)</h1><p>스택 나중에 집어넣은 데이터가 먼저 나오는 선형자료구조이다.
-이 특징을 줄여서 **LIFO(Last In First Out)**라고 부른다.</p><ul><li>데이터를 집어넣는 <strong>push</strong></li><li>데이터를 추출하는 <strong>pop</strong></li><li>현재 데이터의 길이 <strong>length</strong></li><li>다음에 나올 데이터를 확인하는 <strong>peek</strong></li><li>현재 스택이 비어있는지를 확인하는 <strong>isEmpty</strong></li><li>현재 스택을 초기화하는 <strong>clear</strong></li></ul><p>큐와 같이, 위 6가지 정도 기능만 구현해보도록 하자.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>class</span> <span class=nx>Queue</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>constructor</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>this</span><span class=p>.</span><span class=nx>arr</span> <span class=o>=</span> <span class=p>[];</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=nx>enqueue</span><span class=p>(</span><span class=nx>value</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>this</span><span class=p>.</span><span class=nx>arr</span><span class=p>.</span><span class=nx>push</span><span class=p>(</span><span class=nx>value</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=nx>dequeue</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=k>this</span><span class=p>.</span><span class=nx>arr</span><span class=p>.</span><span class=nx>shift</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=nx>length</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=k>this</span><span class=p>.</span><span class=nx>arr</span><span class=p>.</span><span class=nx>length</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=nx>peek</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=k>this</span><span class=p>.</span><span class=nx>arr</span><span class=p>[</span><span class=mi>0</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=nx>isEmpty</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=k>this</span><span class=p>.</span><span class=nx>arr</span><span class=p>.</span><span class=nx>length</span> <span class=o>===</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=nx>clear</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>this</span><span class=p>.</span><span class=nx>arr</span> <span class=o>=</span> <span class=p>[];</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>queue</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Queue</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 데이터 삽입
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>queue</span><span class=p>.</span><span class=nx>enqueue</span><span class=p>(</span><span class=mi>1</span><span class=p>);</span> <span class=c1>// arr: [1]
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>queue</span><span class=p>.</span><span class=nx>enqueue</span><span class=p>(</span><span class=mi>20</span><span class=p>);</span> <span class=c1>// arr: [1, 20]
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>queue</span><span class=p>.</span><span class=nx>enqueue</span><span class=p>(</span><span class=mi>300</span><span class=p>);</span> <span class=c1>// arr: [1, 20, 300]
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=c1>// 데이터 추출
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>queue</span><span class=p>.</span><span class=nx>dequeue</span><span class=p>();</span> <span class=c1>// 1
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=c1>// 현재 큐 길이
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>queue</span><span class=p>.</span><span class=nx>length</span><span class=p>();</span> <span class=c1>// 2
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=c1>// 다음에 추출될 데이터
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>queue</span><span class=p>.</span><span class=nx>peek</span><span class=p>();</span> <span class=c1>// 20
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=c1>// 큐가 비어있는지 확인
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>queue</span><span class=p>.</span><span class=nx>isEmpty</span><span class=p>();</span> <span class=c1>// false
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=c1>// 큐 초기화
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>queue</span><span class=p>.</span><span class=nx>clear</span><span class=p>();</span>
+</span></span></code></pre></td></tr></table></div></div><p>간단하게 구현이 가능하다. 여기서 조금 더 신경을 쓴다면, <code>dequeue</code>나 <code>peek</code>같은 경우는 배열이 비어있을 경우에는 <code>undefined</code>를 리턴할텐데 그 부분을 특정한 데이터나 메시지로 변환하는 정도, 또는 비어있다고 에러메시지를 주는 정도로 튜닝이 가능하겠다.</p><hr><h1 id=스택-stack>스택 (Stack)</h1><p>스택 나중에 집어넣은 데이터가 먼저 나오는 선형자료구조이다.
+이 특징을 줄여서 **LIFO(Last In First Out)**라고 부른다.</p><ul><li>데이터를 집어넣는 <strong>push</strong></li><li>데이터를 추출하는 <strong>pop</strong></li><li>현재 데이터의 길이 <strong>length</strong></li><li>다음에 나올 데이터를 확인하는 <strong>peek</strong></li><li>현재 스택이 비어있는지를 확인하는 <strong>isEmpty</strong></li><li>현재 스택을 초기화하는 <strong>clear</strong></li></ul><p>큐와 같이, 위 6가지 정도 기능만 구현해보도록 하자.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -159,59 +159,59 @@ KwanDev</a></div><div class=flex><a href=/articles/>Articles</a>
 </span><span class=lnt>50
 </span><span class=lnt>51
 </span><span class=lnt>52
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=kr>class</span> <span class=nx>Stack</span> <span class=p>()</span> <span class=p>{</span>
-  <span class=nx>constructor</span> <span class=p>()</span> <span class=p>{</span>
-    <span class=k>this</span><span class=p>.</span><span class=nx>arr</span> <span class=o>=</span> <span class=p>[]</span>
-  <span class=p>}</span>
-
-  <span class=nx>push</span> <span class=p>(</span><span class=nx>value</span><span class=p>)</span> <span class=p>{</span>
-    <span class=k>this</span><span class=p>.</span><span class=nx>arr</span><span class=p>.</span><span class=nx>push</span><span class=p>(</span><span class=nx>value</span><span class=p>)</span>
-  <span class=p>}</span>
-
-  <span class=nx>pop</span> <span class=p>()</span> <span class=p>{</span>
-    <span class=k>return</span> <span class=k>this</span><span class=p>.</span><span class=nx>arr</span><span class=p>.</span><span class=nx>pop</span><span class=p>()</span>
-  <span class=p>}</span>
-
-  <span class=nx>length</span> <span class=p>()</span> <span class=p>{</span>
-    <span class=k>return</span> <span class=k>this</span><span class=p>.</span><span class=nx>arr</span><span class=p>.</span><span class=nx>length</span>
-  <span class=p>}</span>
-
-  <span class=nx>peek</span> <span class=p>()</span> <span class=p>{</span>
-    <span class=k>return</span> <span class=k>this</span><span class=p>.</span><span class=nx>arr</span><span class=p>[</span><span class=k>this</span><span class=p>.</span><span class=nx>arr</span><span class=p>.</span><span class=nx>length</span> <span class=o>-</span> <span class=mi>1</span><span class=p>]</span>
-  <span class=p>}</span>
-
-  <span class=nx>isEmpty</span> <span class=p>()</span> <span class=p>{</span>
-    <span class=k>return</span> <span class=k>this</span><span class=p>.</span><span class=nx>arr</span><span class=p>.</span><span class=nx>length</span> <span class=o>===</span> <span class=mi>0</span>
-  <span class=p>}</span>
-
-  <span class=nx>clear</span> <span class=p>()</span> <span class=p>{</span>
-    <span class=k>this</span><span class=p>.</span><span class=nx>arr</span> <span class=o>=</span> <span class=p>[]</span>
-  <span class=p>}</span>
-<span class=p>}</span>
-
-<span class=kr>const</span> <span class=nx>stack</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Stack</span><span class=p>()</span>
-
-<span class=c1>// 데이터 삽입
-</span><span class=c1></span><span class=nx>stack</span><span class=p>.</span><span class=nx>push</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span> <span class=c1>// arr: [1]
-</span><span class=c1></span><span class=nx>stack</span><span class=p>.</span><span class=nx>push</span><span class=p>(</span><span class=mi>20</span><span class=p>)</span> <span class=c1>// arr: [1, 20]
-</span><span class=c1></span><span class=nx>stack</span><span class=p>.</span><span class=nx>push</span><span class=p>(</span><span class=mi>300</span><span class=p>)</span> <span class=c1>// arr: [1, 20, 300]
-</span><span class=c1></span><span class=nx>stack</span><span class=p>.</span><span class=nx>push</span><span class=p>(</span><span class=mi>4000</span><span class=p>)</span> <span class=c1>// arr: [1, 20, 300, 4000]
-</span><span class=c1></span>
-<span class=c1>// 데이터 추출
-</span><span class=c1></span><span class=nx>stack</span><span class=p>.</span><span class=nx>pop</span><span class=p>()</span> <span class=c1>// 4000
-</span><span class=c1></span>
-<span class=c1>// 현재 스택 길이
-</span><span class=c1></span><span class=nx>stack</span><span class=p>.</span><span class=nx>length</span><span class=p>()</span> <span class=c1>// 3
-</span><span class=c1></span>
-<span class=c1>// 다음에 추출될 데이터
-</span><span class=c1></span><span class=nx>stack</span><span class=p>.</span><span class=nx>peek</span><span class=p>()</span> <span class=c1>// 300
-</span><span class=c1></span>
-<span class=c1>// 스택이 비어있는지 확인
-</span><span class=c1></span><span class=nx>stack</span><span class=p>.</span><span class=nx>isEmpty</span><span class=p>()</span> <span class=c1>// false
-</span><span class=c1></span>
-<span class=c1>// 스택 초기화
-</span><span class=c1></span><span class=nx>stack</span><span class=p>.</span><span class=nx>clear</span><span class=p>()</span>
-</code></pre></td></tr></table></div></div><h1 id=마무리>마무리</h1><p>간단하게 구현해보았다. 절대 어렵지 않으며 이해하고 있으면 분명 도움될 내용이다. 자바스크립트 이벤트 루프를 살펴보면 콜 스택, 태스크 큐 라는 용어가 등장하는데, 위 자료구조를 알고 있으면 이벤트 루프를 이해하기 수월할 것이다.</p></div></div><div class=container><nav class="flex container suggested"><a rel=prev href=/post/vue/2020-03-02-nuxt-spa-ssr/ title="Previous post (older)"><span>Previous</span>
-Nuxt로 알아보는 SPA, SSR 그리고 Static Web</a>
-<a rel=next href=/post/recruit/2020-03-21-frontend-question/ title="Next post (newer)"><span>Next</span>
-프론트엔드 개발자 면접 질문 모음</a></nav></div></main></main><footer class="footer flex"><section class=container><nav class=footer-links><a href=/index.xml>RSS</a></nav></section><script async src=/js/features.min.c5d8f3350f5a652f526b982306299353824299adb7a3bd261ecffacc47087f66.js></script></footer></body></html>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>class</span> <span class=nx>Stack</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>constructor</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>this</span><span class=p>.</span><span class=nx>arr</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=nx>push</span> <span class=p>(</span><span class=nx>value</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>this</span><span class=p>.</span><span class=nx>arr</span><span class=p>.</span><span class=nx>push</span><span class=p>(</span><span class=nx>value</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=nx>pop</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=k>this</span><span class=p>.</span><span class=nx>arr</span><span class=p>.</span><span class=nx>pop</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=nx>length</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=k>this</span><span class=p>.</span><span class=nx>arr</span><span class=p>.</span><span class=nx>length</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=nx>peek</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=k>this</span><span class=p>.</span><span class=nx>arr</span><span class=p>[</span><span class=k>this</span><span class=p>.</span><span class=nx>arr</span><span class=p>.</span><span class=nx>length</span> <span class=o>-</span> <span class=mi>1</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=nx>isEmpty</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=k>this</span><span class=p>.</span><span class=nx>arr</span><span class=p>.</span><span class=nx>length</span> <span class=o>===</span> <span class=mi>0</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=nx>clear</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>this</span><span class=p>.</span><span class=nx>arr</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>stack</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Stack</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 데이터 삽입
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>stack</span><span class=p>.</span><span class=nx>push</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span> <span class=c1>// arr: [1]
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>stack</span><span class=p>.</span><span class=nx>push</span><span class=p>(</span><span class=mi>20</span><span class=p>)</span> <span class=c1>// arr: [1, 20]
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>stack</span><span class=p>.</span><span class=nx>push</span><span class=p>(</span><span class=mi>300</span><span class=p>)</span> <span class=c1>// arr: [1, 20, 300]
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>stack</span><span class=p>.</span><span class=nx>push</span><span class=p>(</span><span class=mi>4000</span><span class=p>)</span> <span class=c1>// arr: [1, 20, 300, 4000]
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=c1>// 데이터 추출
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>stack</span><span class=p>.</span><span class=nx>pop</span><span class=p>()</span> <span class=c1>// 4000
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=c1>// 현재 스택 길이
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>stack</span><span class=p>.</span><span class=nx>length</span><span class=p>()</span> <span class=c1>// 3
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=c1>// 다음에 추출될 데이터
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>stack</span><span class=p>.</span><span class=nx>peek</span><span class=p>()</span> <span class=c1>// 300
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=c1>// 스택이 비어있는지 확인
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>stack</span><span class=p>.</span><span class=nx>isEmpty</span><span class=p>()</span> <span class=c1>// false
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=c1>// 스택 초기화
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>stack</span><span class=p>.</span><span class=nx>clear</span><span class=p>()</span>
+</span></span></code></pre></td></tr></table></div></div><h1 id=마무리>마무리</h1><p>간단하게 구현해보았다. 절대 어렵지 않으며 이해하고 있으면 분명 도움될 내용이다. 자바스크립트 이벤트 루프를 살펴보면 콜 스택, 태스크 큐 라는 용어가 등장하는데, 위 자료구조를 알고 있으면 이벤트 루프를 이해하기 수월할 것이다.</p></div></div><div class=container><nav class="flex container suggested"><a rel=prev href=/post/vue/2020-03-02-nuxt-spa-ssr/ title="Previous post (older)"><span>Previous</span>
+Nuxt로 알아보는 SPA, SSR 그리고 Static Web
+</a><a rel=next href=/post/recruit/2020-03-21-frontend-question/ title="Next post (newer)"><span>Next</span>
+프론트엔드 개발자 면접 질문 모음</a></nav></div></main></main><footer class="footer flex"><section class=container><nav class=footer-links><a href=/index.xml>RSS</a></nav></section><script async src=/js/features.min.fdb064613b89cfdaaa43fcf86c021408578dd158cf0accad7cc50e1913005d12.js></script></footer></body></html>

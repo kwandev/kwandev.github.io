@@ -1,9 +1,9 @@
-<!doctype html><html lang=ko><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=theme-color content="dark"><meta name=google-adsense-account content="ca-pub-4741358150977744"><title>Nuxt에서 svg-sprite-loader 사용하기 | KwanDev</title><link rel=stylesheet href=/sass/main.min.85012d0996f0380c1d60b7c11fa7cb08a3783fc0e0b2a87d95171cec3f4fa20a.css><script async src="https://www.googletagmanager.com/gtag/js?id=G-KTWEFES8PN"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-KTWEFES8PN')</script></head><body class=dark><nav class=navbar><div class=container><div class=flex><div><a class=brand href=/><span class=emoji>😎</span>
-KwanDev</a></div><div class=flex><a href=/articles/>Articles</a>
+<!doctype html><html lang=ko><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=theme-color content="dark"><meta name=google-adsense-account content="ca-pub-4741358150977744"><title>Nuxt에서 svg-sprite-loader 사용하기 | KwanDev</title><link rel=stylesheet href=/sass/main.min.60c3447ec18900e4050d340ea1f9afff753fe95903dea3cb6fc5c56c23ea170f.css><script async src="https://www.googletagmanager.com/gtag/js?id=G-KTWEFES8PN"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-KTWEFES8PN")</script></head><body class=dark><nav class=navbar><div class=container><div class=flex><div><a class=brand href=/><span class=emoji>😎
+</span>KwanDev</a></div><div class=flex><a href=/articles/>Articles</a>
 <a href=/tags/>Tags</a>
 <button id=dark-mode-button></button></div></div></div></nav><main><div class=container><article><header class=article-header><div class=thumb><div><h1>Nuxt에서 svg-sprite-loader 사용하기</h1><div><p>Nuxt에서 기본 내장된 loader가 아닌 다른 svg-loader를 사용할 때 설정을 해보자</p></div><div class=post-meta><div><time>May 31, 2020</time></div><div class=tags><a href=/tags/vue/>Vue</a>
 <a href=/tags/nuxt/>Nuxt</a>
-<a href=/tags/troubleshooting/>troubleshooting</a></div></div></div></div></header></article><div class=article-post><p>최근 회사에서 Nuxt를 사용할 일이 있었는데, Nuxt에 기본 내장된 loader가 아닌 다른 loader를 선택해서 사용할때 겪었던 문제를 기록해두려한다.</p><h2 id=문제>문제</h2><ul><li>create-nuxt-app을 이용해서 앱을 만들면 내장된 url-loader에 svg loader가 내장되어있다.</li><li>새로운 svg loader를 추가하면 기존 loader와 충돌해서 작동하지 않는다.</li></ul><h2 id=해결>해결</h2><ul><li>기존 loader를 제거하고</li><li>새로운 loader를 추가하자</li></ul><h2 id=nuxtconfigjs>nuxt.config.js</h2><p>Nuxt의 설정파일에서 아래와 같이 설정해 주면 된다. 코드는 어렵지 않기 때문에 보면서 이해할 수 있을 것 같다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+<a href=/tags/troubleshooting/>Troubleshooting</a></div></div></div></div></header></article><div class=article-post><p>최근 회사에서 Nuxt를 사용할 일이 있었는데, Nuxt에 기본 내장된 loader가 아닌 다른 loader를 선택해서 사용할때 겪었던 문제를 기록해두려한다.</p><h2 id=문제>문제</h2><ul><li>create-nuxt-app을 이용해서 앱을 만들면 내장된 url-loader에 svg loader가 내장되어있다.</li><li>새로운 svg loader를 추가하면 기존 loader와 충돌해서 작동하지 않는다.</li></ul><h2 id=해결>해결</h2><ul><li>기존 loader를 제거하고</li><li>새로운 loader를 추가하자</li></ul><h2 id=nuxtconfigjs>nuxt.config.js</h2><p>Nuxt의 설정파일에서 아래와 같이 설정해 주면 된다. 코드는 어렵지 않기 때문에 보면서 이해할 수 있을 것 같다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -37,41 +37,41 @@ KwanDev</a></div><div class=flex><a href=/articles/>Articles</a>
 </span><span class=lnt>32
 </span><span class=lnt>33
 </span><span class=lnt>34
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=nx>build</span><span class=o>:</span> <span class=p>{</span>
-  <span class=nx>extend</span> <span class=p>(</span><span class=nx>config</span><span class=p>,</span> <span class=nx>ctx</span><span class=p>)</span> <span class=p>{</span>
-    <span class=c1>// svg를 사용중인 loader를 찾고 삭제
-</span><span class=c1></span>    <span class=kr>const</span> <span class=nx>rule</span> <span class=o>=</span> <span class=nx>config</span><span class=p>.</span><span class=nx>module</span><span class=p>.</span><span class=nx>rules</span><span class=p>.</span><span class=nx>find</span><span class=p>(</span><span class=nx>r</span> <span class=p>=&gt;</span> <span class=nx>r</span><span class=p>.</span><span class=nx>test</span><span class=p>.</span><span class=nx>toString</span><span class=p>().</span><span class=nx>indexOf</span><span class=p>(</span><span class=s1>&#39;svg&#39;</span><span class=p>)</span> <span class=o>!==</span> <span class=o>-</span><span class=mi>1</span><span class=p>)</span>
-    <span class=nx>config</span><span class=p>.</span><span class=nx>module</span><span class=p>.</span><span class=nx>rules</span><span class=p>.</span><span class=nx>splice</span><span class=p>(</span><span class=nx>config</span><span class=p>.</span><span class=nx>module</span><span class=p>.</span><span class=nx>rules</span><span class=p>.</span><span class=nx>indexOf</span><span class=p>(</span><span class=nx>rule</span><span class=p>),</span> <span class=mi>1</span><span class=p>)</span>
-
-    <span class=c1>// 삭제한 loader에서 svg만 빼주고 다시 기본 laoder 추가
-</span><span class=c1></span>    <span class=nx>config</span><span class=p>.</span><span class=nx>module</span><span class=p>.</span><span class=nx>rules</span><span class=p>.</span><span class=nx>push</span><span class=p>({</span>
-      <span class=nx>test</span><span class=o>:</span> <span class=sr>/\.(png|jpe?g|gif|webp)$/i</span><span class=p>,</span>
-      <span class=nx>use</span><span class=o>:</span> <span class=p>[</span>
-        <span class=p>{</span>
-          <span class=nx>loader</span><span class=o>:</span> <span class=s1>&#39;url-loader&#39;</span><span class=p>,</span>
-          <span class=nx>options</span><span class=o>:</span> <span class=p>{</span>
-            <span class=nx>limit</span><span class=o>:</span> <span class=mi>1000</span><span class=p>,</span>
-            <span class=nx>name</span><span class=o>:</span> <span class=s1>&#39;[path][name].[ext]&#39;</span>
-          <span class=p>}</span>
-        <span class=p>}</span>
-      <span class=p>]</span>
-    <span class=p>})</span>
-
-    <span class=c1>// 새로운 svg-loader 추가
-</span><span class=c1></span>    <span class=nx>config</span><span class=p>.</span><span class=nx>module</span><span class=p>.</span><span class=nx>rules</span><span class=p>.</span><span class=nx>push</span><span class=p>({</span>
-      <span class=nx>test</span><span class=o>:</span> <span class=sr>/\.svg$/</span><span class=p>,</span>
-      <span class=nx>use</span><span class=o>:</span> <span class=p>[</span>
-        <span class=p>{</span>
-          <span class=nx>loader</span><span class=o>:</span> <span class=s1>&#39;svg-sprite-loader&#39;</span><span class=p>,</span>
-          <span class=nx>options</span><span class=o>:</span> <span class=p>{</span>
-            <span class=p>...</span><span class=nx>someOptions</span><span class=err>&#39;</span>
-          <span class=p>}</span>
-        <span class=p>}</span>
-      <span class=p>]</span>
-    <span class=p>})</span>
-  <span class=p>}</span>
-<span class=p>}</span>
-</code></pre></td></tr></table></div></div><p>더 좋은 방법이 있으면 댓글로 알려주세요~</p></div></div><div class=container><nav class="flex container suggested"><a rel=prev href=/post/recruit/2020-04-19-change-job-review/ title="Previous post (older)"><span>Previous</span>
-프론트엔드 개발자 이직후기</a>
-<a rel=next href=/post/javascript/2020-07-04-xhr-apostrophe/ title="Next post (newer)"><span>Next</span>
-Axios Header에 특수문자가 있을경우 에러처리</a></nav></div></main></main><footer class="footer flex"><section class=container><nav class=footer-links><a href=/index.xml>RSS</a></nav></section><script async src=/js/features.min.c5d8f3350f5a652f526b982306299353824299adb7a3bd261ecffacc47087f66.js></script></footer></body></html>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>build</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>extend</span> <span class=p>(</span><span class=nx>config</span><span class=p>,</span> <span class=nx>ctx</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// svg를 사용중인 loader를 찾고 삭제
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>rule</span> <span class=o>=</span> <span class=nx>config</span><span class=p>.</span><span class=nx>module</span><span class=p>.</span><span class=nx>rules</span><span class=p>.</span><span class=nx>find</span><span class=p>(</span><span class=nx>r</span> <span class=p>=&gt;</span> <span class=nx>r</span><span class=p>.</span><span class=nx>test</span><span class=p>.</span><span class=nx>toString</span><span class=p>().</span><span class=nx>indexOf</span><span class=p>(</span><span class=s1>&#39;svg&#39;</span><span class=p>)</span> <span class=o>!==</span> <span class=o>-</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nx>config</span><span class=p>.</span><span class=nx>module</span><span class=p>.</span><span class=nx>rules</span><span class=p>.</span><span class=nx>splice</span><span class=p>(</span><span class=nx>config</span><span class=p>.</span><span class=nx>module</span><span class=p>.</span><span class=nx>rules</span><span class=p>.</span><span class=nx>indexOf</span><span class=p>(</span><span class=nx>rule</span><span class=p>),</span> <span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1>// 삭제한 loader에서 svg만 빼주고 다시 기본 laoder 추가
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>config</span><span class=p>.</span><span class=nx>module</span><span class=p>.</span><span class=nx>rules</span><span class=p>.</span><span class=nx>push</span><span class=p>({</span>
+</span></span><span class=line><span class=cl>      <span class=nx>test</span><span class=o>:</span> <span class=sr>/\.(png|jpe?g|gif|webp)$/i</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nx>use</span><span class=o>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>          <span class=nx>loader</span><span class=o>:</span> <span class=s1>&#39;url-loader&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>          <span class=nx>options</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nx>limit</span><span class=o>:</span> <span class=mi>1000</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>name</span><span class=o>:</span> <span class=s1>&#39;[path][name].[ext]&#39;</span>
+</span></span><span class=line><span class=cl>          <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>      <span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=p>})</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1>// 새로운 svg-loader 추가
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>config</span><span class=p>.</span><span class=nx>module</span><span class=p>.</span><span class=nx>rules</span><span class=p>.</span><span class=nx>push</span><span class=p>({</span>
+</span></span><span class=line><span class=cl>      <span class=nx>test</span><span class=o>:</span> <span class=sr>/\.svg$/</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nx>use</span><span class=o>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>          <span class=nx>loader</span><span class=o>:</span> <span class=s1>&#39;svg-sprite-loader&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>          <span class=nx>options</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=p>...</span><span class=nx>someOptions</span><span class=err>&#39;</span>
+</span></span><span class=line><span class=cl>          <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>      <span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=p>})</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>더 좋은 방법이 있으면 댓글로 알려주세요~</p></div></div><div class=container><nav class="flex container suggested"><a rel=prev href=/post/recruit/2020-04-19-change-job-review/ title="Previous post (older)"><span>Previous</span>
+프론트엔드 개발자 이직후기
+</a><a rel=next href=/post/javascript/2020-07-04-xhr-apostrophe/ title="Next post (newer)"><span>Next</span>
+Axios Header에 특수문자가 있을경우 에러처리</a></nav></div></main></main><footer class="footer flex"><section class=container><nav class=footer-links><a href=/index.xml>RSS</a></nav></section><script async src=/js/features.min.fdb064613b89cfdaaa43fcf86c021408578dd158cf0accad7cc50e1913005d12.js></script></footer></body></html>

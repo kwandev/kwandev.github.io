@@ -1,33 +1,33 @@
-<!doctype html><html lang=ko><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=theme-color content="dark"><meta name=google-adsense-account content="ca-pub-4741358150977744"><title>Axios Header에 특수문자가 있을경우 에러처리 | KwanDev</title><link rel=stylesheet href=/sass/main.min.85012d0996f0380c1d60b7c11fa7cb08a3783fc0e0b2a87d95171cec3f4fa20a.css><script async src="https://www.googletagmanager.com/gtag/js?id=G-KTWEFES8PN"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-KTWEFES8PN')</script></head><body class=dark><nav class=navbar><div class=container><div class=flex><div><a class=brand href=/><span class=emoji>😎</span>
-KwanDev</a></div><div class=flex><a href=/articles/>Articles</a>
+<!doctype html><html lang=ko><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=theme-color content="dark"><meta name=google-adsense-account content="ca-pub-4741358150977744"><title>Axios Header에 특수문자가 있을경우 에러처리 | KwanDev</title><link rel=stylesheet href=/sass/main.min.60c3447ec18900e4050d340ea1f9afff753fe95903dea3cb6fc5c56c23ea170f.css><script async src="https://www.googletagmanager.com/gtag/js?id=G-KTWEFES8PN"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-KTWEFES8PN")</script></head><body class=dark><nav class=navbar><div class=container><div class=flex><div><a class=brand href=/><span class=emoji>😎
+</span>KwanDev</a></div><div class=flex><a href=/articles/>Articles</a>
 <a href=/tags/>Tags</a>
 <button id=dark-mode-button></button></div></div></div></nav><main><div class=container><article><header class=article-header><div class=thumb><div><h1>Axios Header에 특수문자가 있을경우 에러처리</h1><div><p>axios를 사용할 때 아퍼스트로피(apostrophe)가 포함되어 있을 경우 에러처리를 어떻게 해야할까</p></div><div class=post-meta><div><time>July 04, 2020</time></div><div class=tags><a href=/tags/javascript/>JavaScript</a>
-<a href=/tags/axios/>axios</a>
-<a href=/tags/troubleshooting/>troubleshooting</a></div></div></div></div></header></article><div class=article-post><h1 id=-원인>👀 원인</h1><p>axios를 이용해서 API 통신을 하던 도중, 전혀 통신이 되지 않거나 에러가 나는 경우를 발견했다.</p><p>문제는 axios header에 정보를 넘길 때, 의도치않게 특수문자 아퍼스트로피(’)가 포함되어 있을 경우 에러나 응답이 통신이 안되는 문제.</p><blockquote><p>아퍼스트로피 (’)와 홑따옴표 (')는 다르다</p></blockquote><h1 id=예시>예시</h1><h2 id=-기대하던-상황>😁 기대하던 상황</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+<a href=/tags/axios/>Axios</a>
+<a href=/tags/troubleshooting/>Troubleshooting</a></div></div></div></div></header></article><div class=article-post><h1 id=-원인>👀 원인</h1><p>axios를 이용해서 API 통신을 하던 도중, 전혀 통신이 되지 않거나 에러가 나는 경우를 발견했다.</p><p>문제는 axios header에 정보를 넘길 때, 의도치않게 특수문자 아퍼스트로피(’)가 포함되어 있을 경우 에러나 응답이 통신이 안되는 문제.</p><blockquote><p>아퍼스트로피 (’)와 홑따옴표 (&rsquo;)는 다르다</p></blockquote><h1 id=예시>예시</h1><h2 id=-기대하던-상황>😁 기대하던 상황</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span><span class=lnt>5
 </span><span class=lnt>6
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=nx>axios</span><span class=p>.</span><span class=nx>defaults</span><span class=p>.</span><span class=nx>headers</span><span class=p>.</span><span class=nx>common</span><span class=p>[</span><span class=s2>&#34;header-sample&#34;</span><span class=p>]</span> <span class=o>=</span> <span class=s2>&#34;header-sample&#34;</span><span class=p>;</span>
-
-<span class=nx>axios</span>
-  <span class=p>.</span><span class=nx>get</span><span class=p>(</span><span class=s2>&#34;https://jsonplaceholder.typicode.com/todos&#34;</span><span class=p>)</span>
-  <span class=p>.</span><span class=nx>then</span><span class=p>((</span><span class=nx>res</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{})</span>
-  <span class=p>.</span><span class=k>catch</span><span class=p>((</span><span class=nx>error</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{});</span>
-</code></pre></td></tr></table></div></div><p><img src=https://user-images.githubusercontent.com/54297322/86505822-51d0b380-be04-11ea-8b7f-b4aa8dab8ce0.PNG alt=sucess></p><p>위 이미지처럼 헤더 샘플이 들어가 있는 상황을 기대 했다.</p><h2 id=-실패한-상황>😢 실패한 상황</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>axios</span><span class=p>.</span><span class=nx>defaults</span><span class=p>.</span><span class=nx>headers</span><span class=p>.</span><span class=nx>common</span><span class=p>[</span><span class=s2>&#34;header-sample&#34;</span><span class=p>]</span> <span class=o>=</span> <span class=s2>&#34;header-sample&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>axios</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=nx>get</span><span class=p>(</span><span class=s2>&#34;https://jsonplaceholder.typicode.com/todos&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=nx>then</span><span class=p>((</span><span class=nx>res</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{})</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=k>catch</span><span class=p>((</span><span class=nx>error</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{});</span>
+</span></span></code></pre></td></tr></table></div></div><p><img src=https://user-images.githubusercontent.com/54297322/86505822-51d0b380-be04-11ea-8b7f-b4aa8dab8ce0.PNG alt=sucess></p><p>위 이미지처럼 헤더 샘플이 들어가 있는 상황을 기대 했다.</p><h2 id=-실패한-상황>😢 실패한 상황</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span><span class=lnt>5
 </span><span class=lnt>6
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=nx>axios</span><span class=p>.</span><span class=nx>defaults</span><span class=p>.</span><span class=nx>headers</span><span class=p>.</span><span class=nx>common</span><span class=p>[</span><span class=s2>&#34;header-sample&#34;</span><span class=p>]</span> <span class=o>=</span> <span class=s2>&#34;hea’der-sample&#34;</span><span class=p>;</span>
-
-<span class=nx>axios</span>
-  <span class=p>.</span><span class=nx>get</span><span class=p>(</span><span class=s2>&#34;https://jsonplaceholder.typicode.com/todos&#34;</span><span class=p>)</span>
-  <span class=p>.</span><span class=nx>then</span><span class=p>((</span><span class=nx>res</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{})</span>
-  <span class=p>.</span><span class=k>catch</span><span class=p>((</span><span class=nx>error</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{});</span>
-</code></pre></td></tr></table></div></div><p><img src=https://user-images.githubusercontent.com/54297322/86505823-539a7700-be04-11ea-9b5b-698c63ebae6b.PNG alt=fail></p><p>아퍼스트로피가 포함되면 위 이미지처럼 아예 통신 자체가 안되는 경우도 있거나 에러가 나는 경우가 생길 수 있다.</p><h1 id=-해결방법>✅ 해결방법</h1><p>웹사이트를 여기저기 검색해본 결과, 해당 문제는</p><ul><li>반드시 header에 사용했을 때 일어나는 문제가 아님</li><li>아퍼스트로피라는 특수문자만의 문제는 아님. 다른 특수문자도 에러가 생길 수 있음</li></ul><p>특수문자로 인해 나타나는 에러는 개발을 하다보면 흔히 겪는 문제이며, axios만의 문제가 아니라 xhr을 이용하다보면 언제든지 겪을수 있는 문제다.</p><p>가장 간단한 해법은 해당 특수문자를 다른 문자로 replace해주는 방법이다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>axios</span><span class=p>.</span><span class=nx>defaults</span><span class=p>.</span><span class=nx>headers</span><span class=p>.</span><span class=nx>common</span><span class=p>[</span><span class=s2>&#34;header-sample&#34;</span><span class=p>]</span> <span class=o>=</span> <span class=s2>&#34;hea’der-sample&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>axios</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=nx>get</span><span class=p>(</span><span class=s2>&#34;https://jsonplaceholder.typicode.com/todos&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=nx>then</span><span class=p>((</span><span class=nx>res</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{})</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=k>catch</span><span class=p>((</span><span class=nx>error</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{});</span>
+</span></span></code></pre></td></tr></table></div></div><p><img src=https://user-images.githubusercontent.com/54297322/86505823-539a7700-be04-11ea-9b5b-698c63ebae6b.PNG alt=fail></p><p>아퍼스트로피가 포함되면 위 이미지처럼 아예 통신 자체가 안되는 경우도 있거나 에러가 나는 경우가 생길 수 있다.</p><h1 id=-해결방법>✅ 해결방법</h1><p>웹사이트를 여기저기 검색해본 결과, 해당 문제는</p><ul><li>반드시 header에 사용했을 때 일어나는 문제가 아님</li><li>아퍼스트로피라는 특수문자만의 문제는 아님. 다른 특수문자도 에러가 생길 수 있음</li></ul><p>특수문자로 인해 나타나는 에러는 개발을 하다보면 흔히 겪는 문제이며, axios만의 문제가 아니라 xhr을 이용하다보면 언제든지 겪을수 있는 문제다.</p><p>가장 간단한 해법은 해당 특수문자를 다른 문자로 replace해주는 방법이다.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
@@ -36,16 +36,16 @@ KwanDev</a></div><div class=flex><a href=/articles/>Articles</a>
 </span><span class=lnt>7
 </span><span class=lnt>8
 </span><span class=lnt>9
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=kd>let</span> <span class=nx>header</span> <span class=o>=</span> <span class=s2>&#34;hea’der-sample&#34;</span><span class=p>;</span>
-<span class=nx>header</span> <span class=o>=</span> <span class=nx>header</span><span class=p>.</span><span class=nx>replace</span><span class=p>(</span><span class=s2>&#34;’&#34;</span><span class=p>,</span> <span class=s2>&#34;other&#34;</span><span class=p>);</span>
-
-<span class=nx>axios</span><span class=p>.</span><span class=nx>defaults</span><span class=p>.</span><span class=nx>headers</span><span class=p>.</span><span class=nx>common</span><span class=p>[</span><span class=s2>&#34;header-sample&#34;</span><span class=p>]</span> <span class=o>=</span> <span class=nx>header</span><span class=p>;</span>
-
-<span class=nx>axios</span>
-  <span class=p>.</span><span class=nx>get</span><span class=p>(</span><span class=s2>&#34;https://jsonplaceholder.typicode.com/todos&#34;</span><span class=p>)</span>
-  <span class=p>.</span><span class=nx>then</span><span class=p>((</span><span class=nx>res</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{})</span>
-  <span class=p>.</span><span class=k>catch</span><span class=p>((</span><span class=nx>error</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{});</span>
-</code></pre></td></tr></table></div></div><p><img src=https://user-images.githubusercontent.com/54297322/86505902-0965c580-be05-11ea-8080-9ffe9a774d11.PNG alt=sucess2></p><p>위 이미지처럼 다른 문자로 치환해서 사용하면 간단하게 해결이 가능하며, 다른 기타 방법으로는</p><p><code>encodeURIComponent</code>를 이용해서 문자를 이스케이프 하는 방법이 있다. 사실 둘다 같은 맥락.</p><blockquote><p>참고</p></blockquote><blockquote><p><a href=https://stackoverflow.com/questions/18251399/why-doesnt-encodeuricomponent-encode-single-quotes-apostrophes>https://stackoverflow.com/questions/18251399/why-doesnt-encodeuricomponent-encode-single-quotes-apostrophes</a></p></blockquote></div></div><div class=container><nav class="flex container suggested"><a rel=prev href=/post/vue/2020-05-31-nuxt-svg-loader/ title="Previous post (older)"><span>Previous</span>
-Nuxt에서 svg-sprite-loader 사용하기</a>
-<a rel=next href=/post/app/2022-07-10-stores/ title="Next post (newer)"><span>Next</span>
-앱스토어에 등록할 때 주의할 점</a></nav></div></main></main><footer class="footer flex"><section class=container><nav class=footer-links><a href=/index.xml>RSS</a></nav></section><script async src=/js/features.min.c5d8f3350f5a652f526b982306299353824299adb7a3bd261ecffacc47087f66.js></script></footer></body></html>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>let</span> <span class=nx>header</span> <span class=o>=</span> <span class=s2>&#34;hea’der-sample&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=nx>header</span> <span class=o>=</span> <span class=nx>header</span><span class=p>.</span><span class=nx>replace</span><span class=p>(</span><span class=s2>&#34;’&#34;</span><span class=p>,</span> <span class=s2>&#34;other&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>axios</span><span class=p>.</span><span class=nx>defaults</span><span class=p>.</span><span class=nx>headers</span><span class=p>.</span><span class=nx>common</span><span class=p>[</span><span class=s2>&#34;header-sample&#34;</span><span class=p>]</span> <span class=o>=</span> <span class=nx>header</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>axios</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=nx>get</span><span class=p>(</span><span class=s2>&#34;https://jsonplaceholder.typicode.com/todos&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=nx>then</span><span class=p>((</span><span class=nx>res</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{})</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=k>catch</span><span class=p>((</span><span class=nx>error</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{});</span>
+</span></span></code></pre></td></tr></table></div></div><p><img src=https://user-images.githubusercontent.com/54297322/86505902-0965c580-be05-11ea-8080-9ffe9a774d11.PNG alt=sucess2></p><p>위 이미지처럼 다른 문자로 치환해서 사용하면 간단하게 해결이 가능하며, 다른 기타 방법으로는</p><p><code>encodeURIComponent</code>를 이용해서 문자를 이스케이프 하는 방법이 있다. 사실 둘다 같은 맥락.</p><blockquote><p>참고</p></blockquote><blockquote><p><a href=https://stackoverflow.com/questions/18251399/why-doesnt-encodeuricomponent-encode-single-quotes-apostrophes>https://stackoverflow.com/questions/18251399/why-doesnt-encodeuricomponent-encode-single-quotes-apostrophes</a></p></blockquote></div></div><div class=container><nav class="flex container suggested"><a rel=prev href=/post/vue/2020-05-31-nuxt-svg-loader/ title="Previous post (older)"><span>Previous</span>
+Nuxt에서 svg-sprite-loader 사용하기
+</a><a rel=next href=/post/app/2022-07-10-stores/ title="Next post (newer)"><span>Next</span>
+앱스토어에 등록할 때 주의할 점</a></nav></div></main></main><footer class="footer flex"><section class=container><nav class=footer-links><a href=/index.xml>RSS</a></nav></section><script async src=/js/features.min.fdb064613b89cfdaaa43fcf86c021408578dd158cf0accad7cc50e1913005d12.js></script></footer></body></html>
