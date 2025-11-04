@@ -1,0 +1,107 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/Container.astro";
+import { SITE, HOME, SOCIALS } from "@consts";
+import ArrowCard from "@components/ArrowCard.astro";
+import Link from "@components/Link.astro";
+import { getCollection } from "astro:content";
+
+const blog = (await getCollection("blog"))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, SITE.NUM_POSTS_ON_HOMEPAGE);
+
+const notes = (await getCollection("notes"))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, SITE.NUM_NOTES_ON_HOMEPAGE);
+---
+
+<Layout title={HOME.TITLE} description={HOME.DESCRIPTION}>
+  <Container>
+    <aside data-pagefind-ignore>
+      <h1 class="font-semibold text-black dark:text-white">
+        Introducing Kwan dev 😎
+      </h1>
+      <div class="space-y-16">
+        <section>
+          <article class="space-y-4">
+            <p class="animate">프론트엔드 개발자로 일하는 이경환입니다.</p>
+            <p class="animate">
+              Vue를 기반으로 프론트엔드 개발을 해왔습니다.<br />
+              기술은 도구일 뿐, 핵심은 사용자 경험과 비즈니스 가치라는 뜻 아래, 현재는
+              다양한 기술을 학습하고 있습니다.
+            </p>
+          </article>
+        </section>
+
+        <section class="animate space-y-6">
+          <div class="flex flex-wrap items-center justify-between gap-y-2">
+            <h2 class="font-semibold text-black dark:text-white">
+              Latest posts
+            </h2>
+            <Link href="/blog"> See all posts </Link>
+          </div>
+          <ul class="not-prose flex flex-col gap-4">
+            {
+              blog.map((post) => (
+                <li>
+                  <ArrowCard entry={post} />
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+
+        <section class="animate space-y-6">
+          <div class="flex flex-wrap items-center justify-between gap-y-2">
+            <h2 class="font-semibold text-black dark:text-white">
+              Latest notes
+            </h2>
+            <Link href="/notes"> See all notes </Link>
+          </div>
+          <ul class="not-prose flex flex-col gap-4">
+            {
+              notes.map((note) => (
+                <li>
+                  <ArrowCard entry={note} />
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+
+        <section class="animate space-y-4">
+          <h2 class="font-semibold text-black dark:text-white">Connect</h2>
+          <article>
+            <p>연락은 이메일로 보내주세요.</p>
+          </article>
+          <ul class="not-prose flex flex-wrap gap-2">
+            {
+              SOCIALS.map((SOCIAL) => (
+                <li class="flex gap-x-2 text-nowrap">
+                  <Link
+                    href={SOCIAL.HREF}
+                    external
+                    aria-label={`${SITE.TITLE} on ${SOCIAL.NAME}`}
+                  >
+                    {SOCIAL.NAME}
+                  </Link>
+                  {"/"}
+                </li>
+              ))
+            }
+            <li class="line-clamp-1">
+              <Link
+                href={`mailto:${SITE.EMAIL}`}
+                aria-label={`Email ${SITE.TITLE}`}
+              >
+                {SITE.EMAIL}
+              </Link>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </aside>
+  </Container>
+</Layout>
