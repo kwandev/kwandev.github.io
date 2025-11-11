@@ -1,0 +1,37 @@
+---
+import { getCollection } from "astro:content";
+
+// 모든 기존 /post/* 경로를 정적으로 생성해 /blog/* 로 리다이렉트합니다.
+export async function getStaticPaths() {
+  const posts = (await getCollection("blog")).filter(
+    (post) => !post.data.draft,
+  );
+  return posts.map((post) => ({
+    params: { id: post.id },
+  }));
+}
+
+const id = Astro.params.id ?? "";
+const target = `/blog/${id}`;
+---
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv={"refresh"} content={`0; url=${target}`} />
+    <link rel="canonical" href={target} />
+    <meta name="robots" content="noindex" />
+    <title>Redirecting…</title>
+  </head>
+  <body>
+    <noscript><a href={target}>/blog 로 이동합니다</a></noscript>
+    <script is:inline define:vars={{ target }}>
+      // 쿼리스트링/해시까지 보존하여 이동
+      const t = target;
+      const q = window.location.search || "";
+      const h = window.location.hash || "";
+      window.location.replace(t + q + h);
+    </script>
+  </body>
+</html>
