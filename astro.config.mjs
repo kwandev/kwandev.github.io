@@ -7,7 +7,10 @@ import tailwindcss from "@tailwindcss/vite";
 // https://astro.build/config
 export default defineConfig({
   site: "https://kwandev.github.io",
-  trailingSlash: "never",
+  trailingSlash: "ignore",
+  build: {
+    format: 'file'
+  },
   integrations: [sitemap(), mdx(), pagefind()],
   vite: {
     plugins: [tailwindcss()],
