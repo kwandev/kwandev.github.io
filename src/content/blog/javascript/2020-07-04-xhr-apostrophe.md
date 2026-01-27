@@ -5,7 +5,6 @@ date: 2020-07-04
 tags:
   - JavaScript
   - axios
-  - troubleshooting
 ---
 
 ## 👀 원인

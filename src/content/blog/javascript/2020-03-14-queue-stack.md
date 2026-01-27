@@ -2,9 +2,8 @@
 title: JavaScript로 구현해보는 큐(Queue), 스택(Stack)
 description: JavaScript로 가장 기본적인 자료구조형인 큐(Queue)와 스택(Stack)을 구현해보자
 date: 2020-03-14
-tags: 
+tags:
   - JavaScript
-  - 자료구조
   - 알고리즘
 ---
 

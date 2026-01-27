@@ -4,8 +4,7 @@ description: React Router 7에서 meta 정보를 설정하는 방법을 알아�
 date: 2026-01-27
 tags:
   - React
-  - React Router 7
-  - React 19
+  - React Router
   - Remix
 ---
 
