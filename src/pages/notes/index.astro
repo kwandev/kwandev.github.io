@@ -5,8 +5,12 @@ import Container from "@components/Container.astro";
 import ArrowCard from "@components/ArrowCard.astro";
 import { NOTES } from "@consts";
 
+const today = new Date();
+
 const data = (await getCollection("notes"))
-  .filter((post) => !post.data.draft)
+  .filter(
+    (post) => !post.data.draft && post.data.date && post.data.date <= today,
+  )
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
 type Acc = {

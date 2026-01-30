@@ -6,13 +6,19 @@ import ArrowCard from "@components/ArrowCard.astro";
 import Link from "@components/Link.astro";
 import { getCollection } from "astro:content";
 
+const today = new Date();
+
 const blog = (await getCollection("blog"))
-  .filter((post) => !post.data.draft)
+  .filter(
+    (post) => !post.data.draft && post.data.date && post.data.date <= today,
+  )
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, SITE.NUM_POSTS_ON_HOMEPAGE);
 
 const notes = (await getCollection("notes"))
-  .filter((post) => !post.data.draft)
+  .filter(
+    (post) => !post.data.draft && post.data.date && post.data.date <= today,
+  )
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, SITE.NUM_NOTES_ON_HOMEPAGE);
 ---
